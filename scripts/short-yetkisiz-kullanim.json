@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Short Yabanci Plaka Yetkisiz Kullanim",
+    "orientation": "vertical",
+    "voiceId": "o9DOmAyPjfFu8AfoFAnM",
+    "theme": "default"
+  },
+  "narration": "Dur, bir saniye! Yurt dışından getirdiğin yabancı plakalı arabayı sakın Türkiye'deki ailene kullandırma. Çünkü bu aracı yalnızca getiren kişi, sahibi ve belirli yakınları kullanabilir. Türkiye'de yerleşik birinin izinsiz kullanması ciddi bir ihlaldir. Yakalanırsan araç, gümrük vergisinin dörtte biri kadar para cezasıyla trafikten men edilebilir. Yani bir günlük iyilik, binlerce liraya mal olur. Peki kimler getirebilir, ne kadar kalabilir? Hepsini kanaldaki videoda tek tek anlattım. Takip et, sakın kaçırma.",
+  "background": { "type": "video", "videoFile": "broll/caravan-surus.mp4", "videoOpacity": 0.18 },
+  "captions": { "enabled": true, "karaoke": true },
+  "scenes": [
+    {
+      "type": "title",
+      "afterWord": "Dur",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Sakın Aileye Kullandırma!",
+      "subtitle": "Yabancı plakalı araç tuzağı",
+      "endAfterWord": "yalnızca",
+      "endOccurrence": 1,
+      "background": { "type": "video", "videoFile": "broll/caravan-surus.mp4", "videoOpacity": 0.3 }
+    },
+    {
+      "type": "list",
+      "afterWord": "yalnızca",
+      "occurrence": 1,
+      "position": "center",
+      "header": "Aracı Kim Kullanabilir?",
+      "headerStyle": "band",
+      "numbered": false,
+      "layout": "stack",
+      "items": ["Aracı getiren kişi", "Araç sahibi", "Belirli yakınları"],
+      "revealMode": "cumulative",
+      "highlightColor": "accent",
+      "revealOn": [
+        { "afterWord": "getiren", "itemIndex": 0 },
+        { "afterWord": "sahibi", "itemIndex": 1 },
+        { "afterWord": "yakınları", "itemIndex": 2 }
+      ],
+      "endAfterWord": "ihlaldir",
+      "endOccurrence": 1,
+      "background": { "type": "gradient" }
+    },
+    {
+      "type": "stat",
+      "afterWord": "Yakalanırsan",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "1/4",
+      "label": "Yetkisiz kullanımda gümrük vergisinin dörtte biri ceza + trafikten men",
+      "endAfterWord": "olur",
+      "endOccurrence": 1,
+      "background": { "type": "video", "videoFile": "broll/liman-genel.mp4", "videoOpacity": 0.18 }
+    },
+    {
+      "type": "title",
+      "afterWord": "videoda",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Tüm kurallar kanalda",
+      "subtitle": "Takip et, kaçırma",
+      "background": { "type": "video", "videoFile": "broll/istanbul-kiyi.mp4", "videoOpacity": 0.22 }
+    }
+  ],
+  "highlightedWords": []
+}

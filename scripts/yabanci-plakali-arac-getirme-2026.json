@@ -1,0 +1,350 @@
+{
+  "meta": {
+    "title": "Yabanci Plakali Arac Getirme 2026",
+    "orientation": "horizontal",
+    "voiceId": "o9DOmAyPjfFu8AfoFAnM",
+    "theme": "default"
+  },
+  "narration": "Yurt dışından yabancı plakalı bir araçla Türkiye'ye gelmek istiyorsunuz. Peki bu aracı kim getirebilir? Türkiye'de tam olarak ne kadar kalabilir? Ve en kritiği: yanlış bir adımda ne kadar ceza ödersiniz? 2026 bu konuda önemli bir yıl. Çünkü 27 Şubat 2026'da yürürlüğe giren yeni trafik kanunuyla cezalar ciddi şekilde arttı ve denetimler sertleşti. Bu videoda yabancı plakalı araçların geçici ithalatıyla ilgili güncel ve net kuralları, resmî mevzuata dayanarak anlatacağım. Başlayalım. İlk ve en kritik şart yerleşiklik. Türkiye'ye yabancı plakalı araç getirebilmek için yurt dışında yerleşik sayılmanız gerekir. Bunun ölçüsü şu: Türkiye'ye giriş yapacağınız tarihten geriye doğru son bir yıl içinde, en az 185 gün fiilen yurt dışında bulunmuş olmanız gerekiyor. Bu şart 2026'da hâlâ geçerli, kaldırılmadı. Ama dikkat, sadece günü doldurmak yetmez. Yurt dışında kalıcı bir ikametgâhınızın da olması beklenir. Yani otelde kalan, şantiyede geçici görevli olan ya da gemi adamı olan kişiler yüz seksen beş günü doldursa bile yerleşik sayılmayabilir. Bu şartı sağlayıp sağlamadığınızı önceden e-Devlet üzerinden Yurt Dışında Yerleşiklik Sorgulama hizmetiyle kontrol edebilirsiniz. Tek istisna emekliler. Yurt dışından emekli olmuş Türk vatandaşları için ilk girişte yüz seksen beş gün şartı aranmaz. Burada herkes için tek bir süre yok, kim olduğunuza göre değişiyor. Yurt dışında yerleşik Türk vatandaşları, çifte vatandaşlar ve mavi kart sahipleri araçlarını yedi yüz otuz güne, yani iki yıla kadar bulundurabilir. Yabancı ülke vatandaşları, yani mavi kartı olmayanlar, en fazla doksan gün. Şirketler ve kiralık araçlar gibi tüzel kişiler ise yüz seksen beş gün şartını sağlasalar bile en fazla doksan gün. Emekliler için bu süre dört yıla kadar uzayabiliyor ve bu süre içinde yurt dışına çıkış zorunluluğu bulunmuyor. Önemli bir detay: yedi yüz otuz günlük sürenizi kullanıp aracı çıkardıktan sonra, tekrar getirebilmek için yeniden en az yüz seksen beş gün yurt dışında kalmanız gerekir. Şimdi en sık ve en pahalı hataların yaşandığı konuya geliyoruz. Yabancı plakalı aracı Türkiye'de herkes kullanamaz. Genel kural şu: sadece aracı getiren kişi, araç sahibi ve belirli şartlardaki yakınları kullanabilir. Asıl tehlike şurada: arabayı Türkiye'deki aileme bırakıp çıkayım, onlar kullansın düşüncesi en büyük tuzaktır. Çünkü Türkiye'de yerleşik birinin bu aracı izinsiz kullanması ciddi bir ihlaldir. Tespit edilirse araç, gümrük vergilerinin dörtte biri oranında para cezasıyla trafikten men edilebilir, muhafaza altına alınabilir ve vergisel yükümlülük doğabilir. Yani bir günlük iyilik, binlerce liraya mal olabilir. İşte bu videonun en güncel kısmı. Yirmi yedi Şubat tarihinde yürürlüğe giren yeni kanunla trafikte sıfır tolerans dönemi başladı. Bu, doğrudan yabancı plaka cezalarını yazan bir kanun değil; ama yola çıkan herkesi ilgilendiren genel trafik cezalarını çok ciddi şekilde artırdı. Buradan çıkan mesaj net: yabancı plakalı araçla Türkiye'de gezerken artık iki ayrı dünyaya birden dikkat etmeniz gerekiyor. Bir yanda gümrük kuralları, yani süre, yetkisiz kullanım ve vekâlet. Diğer yanda bu yeni ve çok daha ağır trafik cezaları. İkisi ayrı ama ikisi de cebinizi aynı anda vurabiliyor. Geçici ithal edilen yabancı plakalı araçlar için değişmez yasaklar var. Bu araçlar satılamaz, devredilemez, Türkiye'de bırakılamaz ve parçalanamaz. Kaza durumunda da kural var: araç tamamen kullanılamaz hale gelir, yani pert olursa, yurt dışına çıkarılmaz; kesin olarak gümrüğe terk edilir. Toparlayalım. En pahalı hatalar şunlar: yüz seksen beş günü yanlış hesaplamak, verilen süreyi aşmak, aracı yetkisiz birine kullandırmak ve sigortasız giriş yapmak. Giriş yapmadan önce mutlaka pasaport giriş çıkış günlerinizi kontrol edin, sigortanızın Türkiye kapsamını teyit edin ve belgelerinizi eksiksiz hazırlayın. İşlem yapmadan önce mutlaka güncel mevzuatı veya bir gümrük müşavirini kontrol edin. Bu konuyla ilgili sorularınızı yorumlara yazın. Güncel gümrük ve dış ticaret içerikleri için kanalımıza abone olmayı unutmayın. Bir sonraki videoda görüşmek üzere, hoşçakalın.",
+  "scenes": [
+    {
+      "type": "title",
+      "afterWord": "Yurt",
+      "occurrence": 1,
+      "position": "top",
+      "textBackdrop": "shadow",
+      "background": {
+        "type": "video",
+        "videoFile": "broll/yesil-yol.mp4",
+        "videoOpacity": 1
+      },
+      "endAfterWord": "Başlayalım",
+      "endOccurrence": 1,
+      "title": "Yabancı Plakalı Araç 2026",
+      "subtitle": "Kim getirir, ne kadar kalır, ceza ne kadar?",
+      "titleStyle": "band"
+    },
+    {
+      "type": "list",
+      "afterWord": "Başlayalım",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "shadow",
+      "background": {
+        "type": "video",
+        "videoFile": "broll/evrak-doldurma.mp4",
+        "videoOpacity": 1
+      },
+      "endAfterWord": "Burada",
+      "endOccurrence": 1,
+      "items": [
+        "Son 1 yılda en az 185 gün yurt dışı",
+        "Kalıcı ikametgâh da şart",
+        "e-Devlet'ten sorgulanabilir",
+        "Emekliler ilk girişte muaf"
+      ],
+      "header": "1. Şart: Yerleşiklik",
+      "layout": "stack",
+      "revealOn": [
+        {
+          "afterWord": "fiilen",
+          "occurrence": 1,
+          "itemIndex": 0
+        },
+        {
+          "afterWord": "ikametgâhınızın",
+          "occurrence": 1,
+          "itemIndex": 1
+        },
+        {
+          "afterWord": "Sorgulama",
+          "occurrence": 1,
+          "itemIndex": 2
+        },
+        {
+          "afterWord": "istisna",
+          "occurrence": 1,
+          "itemIndex": 3
+        }
+      ],
+      "revealMode": "cumulative",
+      "highlightColor": "accent"
+    },
+    {
+      "type": "list",
+      "afterWord": "Burada",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "shadow",
+      "background": {
+        "type": "video",
+        "videoFile": "broll/vergi-hesap.mp4",
+        "videoOpacity": 0.18
+      },
+      "endAfterWord": "bulunmuyor",
+      "endOccurrence": 1,
+      "items": [
+        "Türk / çifte vatandaş / mavi kart: 730 gün (2 yıl)",
+        "Yabancı uyruklu: 90 gün",
+        "Şirket / kiralık: 90 gün",
+        "Emekli: 4 yıla kadar"
+      ],
+      "header": "Kim Ne Kadar Kalabilir?",
+      "layout": "stack",
+      "revealOn": [
+        {
+          "afterWord": "bulundurabilir",
+          "occurrence": 1,
+          "itemIndex": 0
+        },
+        {
+          "afterWord": "olmayanlar",
+          "occurrence": 1,
+          "itemIndex": 1
+        },
+        {
+          "afterWord": "tüzel",
+          "occurrence": 1,
+          "itemIndex": 2
+        },
+        {
+          "afterWord": "uzayabiliyor",
+          "occurrence": 1,
+          "itemIndex": 3
+        }
+      ],
+      "revealMode": "cumulative",
+      "highlightColor": "plain"
+    },
+    {
+      "type": "stat",
+      "afterWord": "bulunmuyor",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "background": {
+        "type": "video",
+        "videoFile": "broll/liman-genel.mp4",
+        "videoOpacity": 0.18
+      },
+      "endAfterWord": "Şimdi",
+      "endOccurrence": 1,
+      "value": "+185 gün",
+      "label": "Aracı çıkardıktan sonra tekrar getirmek için yeniden yurt dışında kalma şartı"
+    },
+    {
+      "type": "list",
+      "afterWord": "Şimdi",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "shadow",
+      "background": {
+        "type": "video",
+        "videoFile": "broll/caravan-surus.mp4",
+        "videoOpacity": 0.18
+      },
+      "endAfterWord": "tuzaktır",
+      "endOccurrence": 1,
+      "items": [
+        "Aracı getiren kişi",
+        "Araç sahibi",
+        "Belirli şartlardaki yakınları"
+      ],
+      "header": "Aracı Kim Kullanabilir?",
+      "layout": "stack",
+      "revealOn": [
+        {
+          "afterWord": "getiren",
+          "occurrence": 1,
+          "itemIndex": 0
+        },
+        {
+          "afterWord": "sahibi",
+          "occurrence": 1,
+          "itemIndex": 1
+        },
+        {
+          "afterWord": "yakınları",
+          "occurrence": 1,
+          "itemIndex": 2
+        }
+      ],
+      "revealMode": "cumulative",
+      "highlightColor": "accent"
+    },
+    {
+      "type": "stat",
+      "afterWord": "tuzaktır",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "background": {
+        "type": "video",
+        "videoFile": "broll/bogaz-gemi.mp4",
+        "videoOpacity": 1
+      },
+      "endAfterWord": "olabilir",
+      "endOccurrence": 1,
+      "value": "Ceza",
+      "label": "Yetkisiz kullanımda gümrük vergisinin dörtte biri ceza + trafikten men"
+    },
+    {
+      "type": "title",
+      "afterWord": "olabilir",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "shadow",
+      "background": {
+        "type": "video",
+        "videoFile": "broll/konteyner-dizi.mp4",
+        "videoOpacity": 1
+      },
+      "endAfterWord": "artırdı",
+      "endOccurrence": 1,
+      "title": "27 Şubat 2026: Sertleşen Denetim",
+      "subtitle": "Yeni trafik kanunu — cezalar ciddi şekilde arttı",
+      "titleStyle": "band"
+    },
+    {
+      "type": "flow",
+      "afterWord": "artırdı",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "shadow",
+      "background": {
+        "type": "video",
+        "videoFile": "broll/caravan-arac.mp4",
+        "videoOpacity": 1
+      },
+      "endAfterWord": "vurabiliyor",
+      "endOccurrence": 1,
+      "steps": [
+        "Gümrük kuralları (süre, yetki, vekâlet)",
+        "Yeni ve ağır trafik cezaları"
+      ],
+      "highlightOn": [
+        {
+          "afterWord": "yanda",
+          "occurrence": 1,
+          "stepIndex": 0
+        },
+        {
+          "afterWord": "Diğer",
+          "occurrence": 1,
+          "stepIndex": 1
+        }
+      ],
+      "highlightColor": "accent"
+    },
+    {
+      "type": "list",
+      "afterWord": "vurabiliyor",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "shadow",
+      "background": {
+        "type": "gradient"
+      },
+      "endAfterWord": "edilir",
+      "endOccurrence": 1,
+      "items": [
+        "Satılamaz",
+        "Devredilemez",
+        "Türkiye'de bırakılamaz",
+        "Parçalanamaz"
+      ],
+      "header": "Kesin Yasaklar",
+      "layout": "grid",
+      "revealOn": [
+        {
+          "afterWord": "satılamaz",
+          "occurrence": 1,
+          "itemIndex": 0
+        },
+        {
+          "afterWord": "devredilemez",
+          "occurrence": 1,
+          "itemIndex": 1
+        },
+        {
+          "afterWord": "bırakılamaz",
+          "occurrence": 1,
+          "itemIndex": 2
+        },
+        {
+          "afterWord": "parçalanamaz",
+          "occurrence": 1,
+          "itemIndex": 3
+        }
+      ],
+      "revealMode": "cumulative",
+      "highlightColor": "danger"
+    },
+    {
+      "type": "list",
+      "afterWord": "edilir",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "shadow",
+      "background": {
+        "type": "video",
+        "videoFile": "broll/liman-vinc.mp4",
+        "videoOpacity": 0.18
+      },
+      "endAfterWord": "önce",
+      "endOccurrence": 1,
+      "items": [
+        "185 günü yanlış hesaplamak",
+        "Süreyi aşmak",
+        "Yetkisiz kullandırmak",
+        "Sigortasız giriş"
+      ],
+      "header": "En Pahalı Hatalar",
+      "layout": "grid",
+      "revealOn": [
+        {
+          "afterWord": "hesaplamak",
+          "occurrence": 1,
+          "itemIndex": 0
+        },
+        {
+          "afterWord": "aşmak",
+          "occurrence": 1,
+          "itemIndex": 1
+        },
+        {
+          "afterWord": "kullandırmak",
+          "occurrence": 1,
+          "itemIndex": 2
+        },
+        {
+          "afterWord": "sigortasız",
+          "occurrence": 1,
+          "itemIndex": 3
+        }
+      ],
+      "revealMode": "cumulative",
+      "highlightColor": "danger"
+    },
+    {
+      "type": "title",
+      "afterWord": "hazırlayın",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "shadow",
+      "title": "Abone Olmayı Unutmayın",
+      "subtitle": "Güncel Gümrük & Dış Ticaret İçerikleri",
+      "titleStyle": "band"
+    }
+  ],
+  "highlightedWords": [],
+  "captions": {
+    "enabled": false,
+    "karaoke": true
+  },
+  "background": {
+    "type": "video",
+    "videoFile": "broll/konteyner-saha.mp4",
+    "videoOpacity": 1
+  }
+}

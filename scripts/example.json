@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "Gümrükte 3 Kritik Adım",
+    "orientation": "vertical",
+    "voiceId": "o9DOmAyPjfFu8AfoFAnM",
+    "theme": "default"
+  },
+  "hook": {
+    "text": "Gümrükte en çok bu 3 hatadan para kaybediliyor.",
+    "style": "bigText"
+  },
+  "narration": "Gümrük süreçlerinde en çok yapılan hatalar nelerdir? Bugün size üç kritik adımı anlatacağım. Birinci adım: eşya girişi. İkinci adım: beyanname verilmesi. Üçüncü adım: vergi ödenmesi ve teslim alınması. Bu üç adımı doğru yapmak, zaman ve para tasarrufu sağlar. Ortalama gümrük vergisi yüzde on sekiz civarındadır. Yanlış beyan, eksik belge ve geç ödeme en yaygın hatalardır.",
+  "scenes": [
+    {
+      "type": "flow",
+      "afterWord": "adımı",
+      "occurrence": 1,
+      "steps": ["Eşya Girişi", "Beyanname", "Vergi Ödemesi", "Teslim Alma"],
+      "highlightOn": [
+        { "afterWord": "girişi", "occurrence": 1, "stepIndex": 0 },
+        { "afterWord": "verilmesi", "occurrence": 1, "stepIndex": 1 },
+        { "afterWord": "ödenmesi", "occurrence": 1, "stepIndex": 2 },
+        { "afterWord": "alınması", "occurrence": 1, "stepIndex": 3 }
+      ]
+    },
+    {
+      "type": "stat",
+      "afterWord": "yüzde",
+      "occurrence": 1,
+      "value": "%18",
+      "label": "ortalama gümrük vergisi"
+    },
+    {
+      "type": "list",
+      "afterWord": "hatalardır",
+      "occurrence": 1,
+      "header": "En Yaygın Hatalar",
+      "items": ["Yanlış beyan", "Eksik belge", "Geç ödeme"]
+    }
+  ],
+  "captions": { "enabled": true, "style": "wordByWord" },
+  "broll": { "enabled": false, "dir": "assets/broll" }
+}
