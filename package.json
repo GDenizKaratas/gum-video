@@ -39,6 +39,7 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "render": "npx tsx src/cli/build.ts",
+    "thumbnail": "tsx src/cli/thumbnail.ts",
     "proxy:broll": "tsx src/cli/proxyBroll.ts",
     "server": "tsx watch src/server/index.ts",
     "panel": "vite --config panel/vite.config.ts",

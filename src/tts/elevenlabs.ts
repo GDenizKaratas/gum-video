@@ -38,7 +38,7 @@ export async function generateSpeechWithTimestamps(
         text,
         model_id: ELEVENLABS_MODEL,
         voice_settings: {
-          speed: 0.92,
+          speed: 0.95,
           stability: 0.5,
           similarity_boost: 0.75,
           style: 0.3,

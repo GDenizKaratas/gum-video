@@ -19,3 +19,6 @@ scripts/*-timeline.json
 # Local AI/tooling config
 .agents
 .claude
+
+# Üretilen kapak görselleri
+thumbnails/
