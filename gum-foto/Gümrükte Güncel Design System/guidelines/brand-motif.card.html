@@ -1,0 +1,29 @@
+<!-- @dsCard group="Brand" viewport="700x300" name="Background motif" subtitle="Faint shipping routes + terazi texture" -->
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; }
+  .stage { position: relative; width: 700px; height: 300px; background: var(--navy-800); overflow: hidden; font-family: var(--font-body); }
+  .vig { position:absolute; inset:0; background: radial-gradient(120% 130% at 50% 35%, transparent 42%, rgba(10,24,48,0.85) 100%); }
+  .scale { position:absolute; right:-20px; top:30px; opacity:0.07; color:#fff; }
+  .cap { position:absolute; left:26px; bottom:22px; color: rgba(255,255,255,0.55); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+</style></head>
+<body>
+<div class="stage">
+  <svg width="700" height="300" viewBox="0 0 700 300" fill="none" style="position:absolute;inset:0">
+    <g stroke="var(--blue-motif)" stroke-opacity="0.55" stroke-width="2">
+      <path d="M-20 80 C 180 30, 460 60, 720 18" stroke-dasharray="3 13" stroke-linecap="round"/>
+      <path d="M-20 250 C 160 290, 520 250, 720 295" stroke-dasharray="3 13" stroke-linecap="round"/>
+      <path d="M60 320 C 140 180, 460 120, 740 96" stroke-dasharray="3 13" stroke-linecap="round"/>
+    </g>
+    <g fill="var(--blue-motif)" fill-opacity="0.6">
+      <circle cx="150" cy="50" r="4"/><circle cx="470" cy="56" r="4"/><circle cx="560" cy="255" r="4"/><circle cx="190" cy="270" r="4"/>
+    </g>
+  </svg>
+  <svg class="scale" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>
+  </svg>
+  <div class="vig"></div>
+  <div class="cap">motif="routes" · "scale" · "combo"</div>
+</div>
+</body></html>

@@ -8,18 +8,39 @@ import {
   enterAnim,
   positionToJustify,
   POSITION_PADDING,
+  resolveHighlight,
   useTheme,
   withAlpha,
+  type HighlightColor,
   type ScenePosition,
 } from "../../brand/theme";
 
-type Props = { value: string; label: string; position?: ScenePosition };
+type Props = {
+  value: string;
+  label: string;
+  emphasis?: string;
+  emphasisColor?: HighlightColor;
+  position?: ScenePosition;
+};
 
-export const StatScene: React.FC<Props> = ({ value, label, position = "center" }) => {
+export const StatScene: React.FC<Props> = ({
+  value,
+  label,
+  emphasis,
+  emphasisColor = "accent",
+  position = "center",
+}) => {
   const frame = useCurrentFrame();
   const theme = useTheme();
   const valueAnim = enterAnim(frame, 0);
-  const labelAnim = enterAnim(frame, 10);
+  const emphasisAnim = enterAnim(frame, 8);
+  const labelAnim = enterAnim(frame, emphasis ? 14 : 10);
+  const hl = resolveHighlight(theme, emphasisColor);
+  const emphasisMain = emphasisColor === "plain" ? COLORS.text : hl.main;
+  const emphasisBorder =
+    emphasisColor === "plain" ? "rgba(255,255,255,0.30)" : withAlpha(hl.main, 0.52);
+  const emphasisBg =
+    emphasisColor === "plain" ? "rgba(255,255,255,0.08)" : withAlpha(hl.main, 0.16);
 
   const scale = interpolate(frame, [0, 20], [0.6, 1], {
     easing: Easing.bezier(0.34, 1.56, 0.64, 1),
@@ -48,11 +69,11 @@ export const StatScene: React.FC<Props> = ({ value, label, position = "center" }
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 18,
+          gap: emphasis ? 20 : 18,
           opacity: valueAnim.opacity,
           backdropFilter: GLASS_BLUR,
           WebkitBackdropFilter: GLASS_BLUR,
-          maxWidth: 760,
+          maxWidth: 820,
         }}
       >
         <div
@@ -64,10 +85,35 @@ export const StatScene: React.FC<Props> = ({ value, label, position = "center" }
             color: theme.primary,
             lineHeight: 1,
             textAlign: "center",
+            overflowWrap: "anywhere",
           }}
         >
           {value}
         </div>
+
+        {emphasis && (
+          <div
+            style={{
+              opacity: emphasisAnim.opacity,
+              transform: `translateY(${emphasisAnim.translateY}px)`,
+              fontFamily: FONTS.heading,
+              fontSize: 46,
+              fontWeight: FONTS.weights.bold,
+              color: emphasisMain,
+              textAlign: "center",
+              lineHeight: 1.12,
+              maxWidth: 680,
+              overflowWrap: "anywhere",
+              textShadow: emphasisColor === "plain" ? "0 2px 12px rgba(0,0,0,0.55)" : undefined,
+              border: `2px solid ${emphasisBorder}`,
+              backgroundColor: emphasisBg,
+              borderRadius: 18,
+              padding: "12px 22px",
+            }}
+          >
+            {emphasis}
+          </div>
+        )}
 
         <div
           style={{
@@ -78,8 +124,9 @@ export const StatScene: React.FC<Props> = ({ value, label, position = "center" }
             fontWeight: FONTS.weights.semibold,
             color: COLORS.text,
             textAlign: "center",
-            maxWidth: 600,
+            maxWidth: 640,
             lineHeight: 1.4,
+            overflowWrap: "anywhere",
           }}
         >
           {label}

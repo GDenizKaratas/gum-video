@@ -1,0 +1,310 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/content/**",
+              "components/layout/**",
+              "components/thumbnails/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Archivo))/i]",
+        "message": "Font not provided by the design system. Available: Archivo."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BrandTag'] > JSXAttribute > JSXIdentifier[name!=/^(?:customs|handle|color|key|ref|className|style|children)$/]",
+        "message": "<BrandTag> doesn't accept that prop. Declared props: customs, handle, color."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Eyebrow'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|rule|key|ref|className|style|children)$/]",
+        "message": "<Eyebrow> doesn't accept that prop. Declared props: children, tone, rule."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Eyebrow'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:faint|accent)$/]",
+        "message": "<Eyebrow> tone must be one of 'faint' | 'accent'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Highlight'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|key|ref|className|style|children)$/]",
+        "message": "<Highlight> doesn't accept that prop. Declared props: children, variant."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Highlight'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:text|fill)$/]",
+        "message": "<Highlight> variant must be one of 'text' | 'fill'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LineIcon'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|size|color|strokeWidth|key|ref|className|style|children)$/]",
+        "message": "<LineIcon> doesn't accept that prop. Declared props: name, size, color, strokeWidth."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LineIcon'] > JSXAttribute[name.name='name'] > Literal[value!=/^(?:scale|ship|truck|car|document|container|globe|alert)$/]",
+        "message": "<LineIcon> name must be one of 'scale' | 'ship' | 'truck' | 'car' | 'document' | 'container' | 'globe' | 'alert'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PostFrame'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|motif|vignette|brand|handle|photo|photoPos|scrim|grade|pad|bodyStyle|key|ref|className|style|children)$/]",
+        "message": "<PostFrame> doesn't accept that prop. Declared props: children, motif, vignette, brand, handle, photo, photoPos, scrim, grade, pad, bodyStyle."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PostFrame'] > JSXAttribute[name.name='motif'] > Literal[value!=/^(?:routes|scale|combo|none)$/]",
+        "message": "<PostFrame> motif must be one of 'routes' | 'scale' | 'combo' | 'none'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PostFrame'] > JSXAttribute[name.name='scrim'] > Literal[value!=/^(?:bottom|top|left|full)$/]",
+        "message": "<PostFrame> scrim must be one of 'bottom' | 'top' | 'left' | 'full'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StatNumber'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|unit|unitTone|size|key|ref|className|style|children)$/]",
+        "message": "<StatNumber> doesn't accept that prop. Declared props: value, unit, unitTone, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StatNumber'] > JSXAttribute[name.name='unitTone'] > Literal[value!=/^(?:accent|white)$/]",
+        "message": "<StatNumber> unitTone must be one of 'accent' | 'white'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TopicChips'] > JSXAttribute > JSXIdentifier[name!=/^(?:items|tone|key|ref|className|style|children)$/]",
+        "message": "<TopicChips> doesn't accept that prop. Declared props: items, tone."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TopicChips'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:faint|accent)$/]",
+        "message": "<TopicChips> tone must be one of 'faint' | 'accent'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='VideoThumb'] > JSXAttribute > JSXIdentifier[name!=/^(?:format|photo|photoPos|scrim|grade|eyebrow|title|callout|calloutTone|brand|align|key|ref|className|style|children)$/]",
+        "message": "<VideoThumb> doesn't accept that prop. Declared props: format, photo, photoPos, scrim, grade, eyebrow, title, callout, calloutTone, brand, align."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='VideoThumb'] > JSXAttribute[name.name='format'] > Literal[value!=/^(?:youtube|shorts)$/]",
+        "message": "<VideoThumb> format must be one of 'youtube' | 'shorts'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='VideoThumb'] > JSXAttribute[name.name='scrim'] > Literal[value!=/^(?:bottom-left|bottom|full)$/]",
+        "message": "<VideoThumb> scrim must be one of 'bottom-left' | 'bottom' | 'full'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='VideoThumb'] > JSXAttribute[name.name='calloutTone'] > Literal[value!=/^(?:hot|accent)$/]",
+        "message": "<VideoThumb> calloutTone must be one of 'hot' | 'accent'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='VideoThumb'] > JSXAttribute[name.name='align'] > Literal[value!=/^(?:bottom|center|top)$/]",
+        "message": "<VideoThumb> align must be one of 'bottom' | 'center' | 'top'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WarningStrip'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|icon|key|ref|className|style|children)$/]",
+        "message": "<WarningStrip> doesn't accept that prop. Declared props: children, icon."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "BrandTag": {
+        "replaces": []
+      },
+      "Eyebrow": {
+        "replaces": []
+      },
+      "Highlight": {
+        "replaces": []
+      },
+      "LineIcon": {
+        "replaces": []
+      },
+      "PostFrame": {
+        "replaces": []
+      },
+      "StatNumber": {
+        "replaces": []
+      },
+      "TopicChips": {
+        "replaces": []
+      },
+      "VideoThumb": {
+        "replaces": []
+      },
+      "WarningStrip": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-deep",
+      "--accent-ink",
+      "--bg-base",
+      "--bg-deep",
+      "--blue-motif",
+      "--blue-motif-faint",
+      "--divider",
+      "--font-body",
+      "--font-display",
+      "--fs-body",
+      "--fs-caption",
+      "--fs-chip",
+      "--fs-display",
+      "--fs-h1",
+      "--fs-h2",
+      "--fs-label",
+      "--fs-lead",
+      "--fs-stat",
+      "--fw-black",
+      "--fw-bold",
+      "--fw-extrabold",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--highlight",
+      "--highlight-ink",
+      "--ink-faint",
+      "--ink-ghost",
+      "--ink-muted",
+      "--ink-strong",
+      "--lh-body",
+      "--lh-head",
+      "--lh-snug",
+      "--lh-tight",
+      "--navy-600",
+      "--navy-700",
+      "--navy-800",
+      "--navy-900",
+      "--post-margin",
+      "--post-margin-lg",
+      "--post-size",
+      "--radius-md",
+      "--radius-pill",
+      "--radius-sm",
+      "--rule-accent",
+      "--rule-med",
+      "--rule-thin",
+      "--space-1",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--surface-panel",
+      "--text-body",
+      "--text-display",
+      "--text-label",
+      "--tr-eyebrow",
+      "--tr-normal",
+      "--tr-tight",
+      "--tr-wide",
+      "--warn-fill",
+      "--warn-ink",
+      "--white",
+      "--yt-hot",
+      "--yt-hot-ink"
+    ],
+    "tokenKinds": {
+      "--navy-900": "color",
+      "--navy-800": "color",
+      "--navy-700": "color",
+      "--navy-600": "color",
+      "--white": "color",
+      "--ink-strong": "color",
+      "--ink-muted": "color",
+      "--ink-faint": "color",
+      "--ink-ghost": "color",
+      "--accent": "color",
+      "--accent-deep": "color",
+      "--accent-ink": "color",
+      "--blue-motif": "color",
+      "--blue-motif-faint": "color",
+      "--yt-hot": "color",
+      "--yt-hot-ink": "color",
+      "--bg-base": "color",
+      "--bg-deep": "color",
+      "--surface-panel": "color",
+      "--text-display": "font",
+      "--text-body": "font",
+      "--text-label": "font",
+      "--divider": "color",
+      "--highlight": "color",
+      "--highlight-ink": "color",
+      "--warn-fill": "color",
+      "--warn-ink": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--fw-regular": "font",
+      "--fw-medium": "font",
+      "--fw-semibold": "font",
+      "--fw-bold": "font",
+      "--fw-extrabold": "font",
+      "--fw-black": "font",
+      "--fs-stat": "spacing",
+      "--fs-display": "spacing",
+      "--fs-h1": "spacing",
+      "--fs-h2": "spacing",
+      "--fs-lead": "spacing",
+      "--fs-body": "spacing",
+      "--fs-chip": "spacing",
+      "--fs-label": "spacing",
+      "--fs-caption": "spacing",
+      "--lh-tight": "font",
+      "--lh-snug": "font",
+      "--lh-head": "font",
+      "--lh-body": "font",
+      "--tr-tight": "spacing",
+      "--tr-normal": "spacing",
+      "--tr-wide": "spacing",
+      "--tr-eyebrow": "spacing",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--post-size": "spacing",
+      "--post-margin": "spacing",
+      "--post-margin-lg": "spacing",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-pill": "radius",
+      "--rule-thin": "spacing",
+      "--rule-med": "spacing",
+      "--rule-accent": "spacing"
+    },
+    "fontFamilies": [
+      "Archivo"
+    ]
+  }
+}

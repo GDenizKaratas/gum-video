@@ -31,7 +31,7 @@
       "headerStyle": "band",
       "numbered": false,
       "layout": "stack",
-      "items": ["Aracı getiren kişi", "Araç sahibi", "Belirli yakınları"],
+      "items": ["Aracı getiren kişi", "Araç sahibi", "Şartları sağlayan yakınlar"],
       "revealMode": "cumulative",
       "highlightColor": "accent",
       "revealOn": [
@@ -49,8 +49,10 @@
       "occurrence": 1,
       "position": "center",
       "textBackdrop": "plate",
-      "value": "1/4",
-      "label": "Yetkisiz kullanımda gümrük vergisinin dörtte biri ceza + trafikten men",
+      "value": "CEZA",
+      "emphasis": "Gümrük vergisinin 1/4'ü",
+      "emphasisColor": "danger",
+      "label": "Yetkisiz kullanım + trafikten men",
       "endAfterWord": "olur",
       "endOccurrence": 1,
       "background": { "type": "video", "videoFile": "broll/liman-genel.mp4", "videoOpacity": 0.18 }

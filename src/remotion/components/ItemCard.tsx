@@ -54,7 +54,6 @@ export const ItemCard: React.FC<Props> = ({
         flex: grid ? "1 1 calc(50% - 16px)" : undefined,
         minWidth: grid ? 260 : undefined,
         boxSizing: "border-box",
-        transition: "none",
       }}
     >
       {numbered ? (

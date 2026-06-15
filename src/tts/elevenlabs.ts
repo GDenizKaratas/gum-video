@@ -1,5 +1,5 @@
 import fs from "fs";
-import { ELEVENLABS_MODEL } from "../config";
+import { ELEVENLABS_LANGUAGE_CODE, ELEVENLABS_MODEL } from "../config";
 
 export type ElevenLabsAlignment = {
   characters: string[];
@@ -37,6 +37,8 @@ export async function generateSpeechWithTimestamps(
       body: JSON.stringify({
         text,
         model_id: ELEVENLABS_MODEL,
+        language_code: ELEVENLABS_LANGUAGE_CODE,
+        apply_text_normalization: "on",
         voice_settings: {
           speed: 0.95,
           stability: 0.5,

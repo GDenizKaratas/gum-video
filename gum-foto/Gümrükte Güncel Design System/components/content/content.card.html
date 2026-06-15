@@ -1,0 +1,77 @@
+<!-- @dsCard group="Components" viewport="700x500" name="Content primitives" subtitle="Eyebrow · Highlight · StatNumber · TopicChips · WarningStrip · LineIcon" -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html, body { margin: 0; background: #0F2244; }
+  /* scale the poster-sized type tokens down for specimen display */
+  .stage {
+    --fs-stat: 92px; --fs-h1: 40px; --fs-h2: 30px; --fs-lead: 22px;
+    --fs-body: 20px; --fs-chip: 16px; --fs-label: 15px; --fs-caption: 13px;
+    padding: 30px 32px; display: flex; flex-direction: column; gap: 26px;
+    color: #fff; box-sizing: border-box;
+  }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 26px; }
+  .lab { font: 600 11px/1.3 'Archivo', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 10px; }
+  .cell { display: flex; flex-direction: column; }
+  .div { height: 1px; background: rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Eyebrow, Highlight, StatNumber, TopicChips, WarningStrip, LineIcon } = window.GMrKteGNcelDesignSystem_500523;
+  function Demo() {
+    return (
+      <div className="stage">
+        <div className="row" style={{ gap: 48 }}>
+          <div className="cell">
+            <div className="lab">Eyebrow</div>
+            <Eyebrow tone="accent" rule>2026 GÜNCEL</Eyebrow>
+          </div>
+          <div className="cell">
+            <div className="lab">StatNumber</div>
+            <StatNumber value="730" unit="GÜN" />
+          </div>
+        </div>
+        <div className="div"></div>
+        <div className="cell">
+          <div className="lab">Highlight — text & fill</div>
+          <div style={{ fontSize: 'var(--fs-h2)', fontWeight: 800, letterSpacing: '-0.01em' }}>
+            En <Highlight variant="fill">pahalı</Highlight> hata — çoğu kişi <Highlight>masum</Highlight> sanıyor
+          </div>
+        </div>
+        <div className="div"></div>
+        <div className="cell">
+          <div className="lab">WarningStrip</div>
+          <WarningStrip icon="alert">Gümrük vergisinin ¼'ü ceza + araç men</WarningStrip>
+        </div>
+        <div className="div"></div>
+        <div className="row" style={{ justifyContent: 'space-between' }}>
+          <div className="cell" style={{ flex: 1 }}>
+            <div className="lab">TopicChips</div>
+            <TopicChips items={['İthalat', 'İhracat', 'Vergi', 'Lojistik', 'Mevzuat']} />
+          </div>
+        </div>
+        <div className="div"></div>
+        <div className="cell">
+          <div className="lab">LineIcon</div>
+          <div className="row" style={{ gap: 22, color: 'rgba(255,255,255,0.85)' }}>
+            {['scale','ship','truck','car','document','container','globe','alert'].map(n => (
+              <LineIcon key={n} name={n} size={34} strokeWidth={1.8} />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

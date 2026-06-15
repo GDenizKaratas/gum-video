@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "title": "Short Yurtdisindan Telefon Getirme 2026",
+    "orientation": "vertical",
+    "voiceId": "o9DOmAyPjfFu8AfoFAnM",
+    "theme": "default"
+  },
+  "narration": "Yurt dışından telefon getirirken bunu bilmezseniz cihazınız Türkiye'de mobil şebekeye kapanabilir. 2026 kurallarına göre, yolcu beraberinde üç takvim yılında sadece bir telefon getirilebilir. Telefonun değerine göre değil, sabit bir IMEI kayıt harcı ödenir. 2026 Ocak ayından itibaren bu harç 54 bin 258 lira oldu. Türkiye'ye giriş yaptıktan sonra 120 gün içinde telefonu kendi adınıza kayıtlı bir hatla kaydettirmeniz gerekir. Kayıt yapılmazsa cihaz tamamen bozulmaz; ancak Türkiye'de SIM kartla mobil şebekede kullanılamaz. Birden fazla telefon getirmeniz durumunda ise ticari değerlendirme ve gümrük işlemi riski doğabilir. Benzer güncel gümrük içerikleri için kanalımızı takip edebilirsiniz.",
+  "background": { "type": "video", "videoFile": "broll/phone.mp4", "videoOpacity": 0.18 },
+  "captions": { "enabled": true, "karaoke": true },
+  "scenes": [
+    {
+      "type": "title",
+      "afterWord": "Yurt",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Telefon Getirirken Dikkat!",
+      "subtitle": "Bilmezsen şebekeye kapanır",
+      "endAfterWord": "kapanabilir",
+      "endOccurrence": 1,
+      "background": { "type": "video", "videoFile": "broll/phone.mp4", "videoOpacity": 0.32 }
+    },
+    {
+      "type": "stat",
+      "afterWord": "kurallarına",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "3 YILDA 1",
+      "label": "Yolcu beraberinde üç takvim yılında yalnızca bir telefon",
+      "endAfterWord": "getirilebilir",
+      "endOccurrence": 1
+    },
+    {
+      "type": "stat",
+      "afterWord": "sabit",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "54.258 TL",
+      "emphasis": "Sabit IMEI kayıt harcı",
+      "emphasisColor": "accent",
+      "label": "Ocak 2026'dan itibaren — telefonun değerinden bağımsız",
+      "endAfterWord": "oldu",
+      "endOccurrence": 1,
+      "background": { "type": "video", "videoFile": "broll/vergi-hesap.mp4", "videoOpacity": 0.18 }
+    },
+    {
+      "type": "stat",
+      "afterWord": "giriş",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "120 GÜN",
+      "emphasis": "Kendi adına kayıtlı bir hatla kaydettir",
+      "emphasisColor": "accent",
+      "label": "Türkiye'ye girişten sonra bu süre içinde",
+      "endAfterWord": "gerekir",
+      "endOccurrence": 1
+    },
+    {
+      "type": "stat",
+      "afterWord": "yapılmazsa",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "DİKKAT",
+      "emphasis": "SIM kartla mobil şebekede kullanılamaz",
+      "emphasisColor": "danger",
+      "label": "Kayıt yapılmazsa — cihaz bozulmaz, ama hat çalışmaz",
+      "endAfterWord": "kullanılamaz",
+      "endOccurrence": 1
+    },
+    {
+      "type": "title",
+      "afterWord": "Birden",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Birden Fazla = Ticari Risk",
+      "subtitle": "Gümrük işlemi gerekebilir",
+      "endAfterWord": "doğabilir",
+      "endOccurrence": 1
+    },
+    {
+      "type": "title",
+      "afterWord": "kanalımızı",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Takip Et",
+      "subtitle": "Güncel gümrük içerikleri",
+      "background": { "type": "video", "videoFile": "broll/phone.mp4", "videoOpacity": 0.3 }
+    }
+  ],
+  "highlightedWords": []
+}

@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { ScriptSchema, type Script } from "../schema";
 import { generateSpeechWithTimestamps } from "../tts/elevenlabs";
+import { toSpokenTr } from "../tts/spoken";
 import {
   alignmentToWordTimings,
   captionsToWordTimings,
@@ -82,7 +83,7 @@ export async function prepare(
       );
     }
     console.log("🔊 ElevenLabs TTS üretiliyor...");
-    const alignment = await generateSpeechWithTimestamps(script.narration, vid, audioAbsPath);
+    const alignment = await generateSpeechWithTimestamps(toSpokenTr(script.narration), vid, audioAbsPath);
     wordTimings = alignmentToWordTimings(alignment);
     const lastWord = wordTimings[wordTimings.length - 1];
     totalSec = lastWord ? lastWord.endSec + 0.3 : 10;

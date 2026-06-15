@@ -52,6 +52,8 @@ export type Scene = {
   highlightColor?: "accent" | "danger" | "plain"; // list/flow
   value?: string; // stat
   label?: string; // stat
+  emphasis?: string; // stat
+  emphasisColor?: "accent" | "danger" | "plain"; // stat
   file?: string; // image / video
   caption?: string; // image
   full?: boolean; // image
@@ -109,6 +111,8 @@ export function sceneToScript(s: Scene) {
     case "stat":
       base.value = s.value ?? "";
       base.label = s.label ?? "";
+      if (s.emphasis) base.emphasis = s.emphasis;
+      base.emphasisColor = s.emphasisColor ?? "accent";
       break;
     case "image":
       base.file = s.file ?? "";
@@ -175,6 +179,8 @@ export function scriptSceneToPanel(s: any): Scene {
     case "stat":
       sc.value = s.value ?? "";
       sc.label = s.label ?? "";
+      sc.emphasis = s.emphasis;
+      sc.emphasisColor = s.emphasisColor ?? "accent";
       break;
     case "image":
       sc.file = s.file ?? "";

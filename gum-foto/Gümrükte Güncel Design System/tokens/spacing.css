@@ -1,0 +1,29 @@
+/* ============================================================
+   SPACING & SHAPE — Gümrükte Güncel
+   8px base rhythm. Generous margins — posts breathe ("nefes alsın").
+   ============================================================ */
+:root {
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 88px;
+  --space-8: 120px;
+
+  /* canvas + safe margins (1080 poster) */
+  --post-size: 1080px;
+  --post-margin: 96px;     /* outer safe padding */
+  --post-margin-lg: 120px;
+
+  /* radii — restrained, mostly square/poster feel */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-pill: 999px;
+
+  /* strokes */
+  --rule-thin: 2px;
+  --rule-med: 4px;
+  --rule-accent: 6px;
+}

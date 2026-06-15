@@ -1,0 +1,23 @@
+<!-- @dsCard group="Colors" viewport="700x210" name="Yellow accent" subtitle="Used like tweezers — numbers + one keyword" -->
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--navy-800); font-family: var(--font-body); padding: 28px 30px; }
+  .demo { font-size: 40px; font-weight: 900; letter-spacing: -0.02em; color: #fff; line-height: 1.05; margin-bottom: 26px; }
+  .y { color: var(--accent); }
+  .fill { background: var(--accent); color: var(--accent-ink); padding: 0 0.16em; border-radius: 4px; }
+  .row { display: flex; gap: 18px; }
+  .cell { flex: 1; }
+  .chip { height: 50px; border-radius: 6px; }
+  .name { color: #fff; font-size: 13px; font-weight: 700; margin-top: 11px; }
+  .hex { color: rgba(255,255,255,0.5); font-size: 11px; margin-top: 2px; }
+  .role { color: rgba(255,255,255,0.42); font-size: 11px; margin-top: 4px; }
+</style></head>
+<body>
+<div class="demo"><span class="y">730 GÜN</span> · en <span class="fill">pahalı</span> hata</div>
+<div class="row">
+  <div class="cell"><div class="chip" style="background:var(--accent)"></div><div class="name">accent</div><div class="hex">#F5C518</div><div class="role">numbers · 1 keyword</div></div>
+  <div class="cell"><div class="chip" style="background:var(--accent-deep)"></div><div class="name">accent-deep</div><div class="hex">#D9AC0F</div><div class="role">borders / pressed</div></div>
+  <div class="cell"><div class="chip" style="background:var(--accent-ink)"></div><div class="name">accent-ink</div><div class="hex">#0F2244</div><div class="role">text on yellow</div></div>
+</div>
+</body></html>

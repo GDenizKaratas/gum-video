@@ -70,8 +70,9 @@ Her sahne, narration'da **geçen bir kelime söylendiğinde** ekrana girer. Bu y
   `{ "steps": ["Adım 1","Adım 2"],  // en az 2
    "highlightOn": [ { "afterWord": "kelime", "stepIndex": 0 }, ... ] }`
   → Her adım, kendi `afterWord`'ü söylenince vurgulanır. stepIndex 0'dan başlar.
-- **stat** (tek büyük rakam/istatistik):
-  `{ "value": "%18", "label": "kısa açıklama" }`
+- **stat** (tek büyük kelime/rakam + opsiyonel vurgulu alt satır):
+  `{ "value": "CEZA", "emphasis": "Gümrük vergisinin 1/4'ü", "emphasisColor": "danger", "label": "kısa açıklama" }`
+  → `emphasis` opsiyoneldir. `emphasisColor`: "accent" | "danger" | "plain".
 - **image** (ortada fotoğraf): `{ "file": "images/dosya.jpg", "caption": "alt yazı (ops.)" }`
   → Sadece aşağıdaki GÖRSELLER listesindeki dosyaları kullan; yoksa bu tipi kullanma.
 
@@ -133,7 +134,9 @@ npm run render -- scripts/konu.json --orientation=horizontal
 npm run render -- scripts/konu.json --voice=BAŞKA_VOICE_ID
 ```
 
-Çıktı: `output/<baslik>-<tarih>-<saat>.mp4`
+Çıktı: vertical/Shorts için `output/shorts/001-<baslik>-<tarih>-<saat>.mp4`,
+horizontal/normal video için `output/videos/001-<baslik>-<tarih>-<saat>.mp4`.
+Sıra numarası Shorts ve normal video klasörlerinde ayrı ayrı ilerler.
 Ayrıca ses `public/audio/<slug>.mp3`, altyazı `public/captions/<slug>.json` olarak kaydedilir
 (slug = meta.title'dan üretilir).
 

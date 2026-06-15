@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "title": "Short Temu Dusuk Bedelli Paket 2026",
+    "orientation": "vertical",
+    "voiceId": "o9DOmAyPjfFu8AfoFAnM",
+    "theme": "default"
+  },
+  "narration": "Temu'dan ucuza alma devri bitti, işte yeni maliyet. 6 Şubat 2026'dan sonra, yurt dışından gelen düşük bedelli paketlerde 30 euro muafiyeti kaldırıldı. Yani ürün 1 euro bile olsa gümrük işlemi ve vergi gündeme gelebilir. Üstelik sadece ürün bedeli değil; kargo bedeli de vergi hesabına dahil ediliyor. Bir de hızlı kargo firmasının gümrükleme veya hizmet bedeli eklenebilir. Bu yüzden 250 liralık bir ürün, masraflar eklenince ürün fiyatını aşabilir. Bir de şu var: ayda 5 paketi veya 30 kiloyu aşarsan, işlemin artık bireysel değil ticari gümrük kapsamına girebilir. Detaylar kanalda, takip etmeyi unutmayın.",
+  "background": { "type": "video", "videoFile": "broll/phone.mp4", "videoOpacity": 0.18 },
+  "captions": { "enabled": true, "karaoke": true },
+  "scenes": [
+    {
+      "type": "title",
+      "afterWord": "Temu",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Temu'da Ucuz Devri Bitti",
+      "subtitle": "İşte 2026'nın yeni maliyeti",
+      "background": { "type": "video", "videoFile": "broll/phone.mp4", "videoOpacity": 0.32 }
+    },
+    {
+      "type": "stat",
+      "afterWord": "Şubat",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "MUAFİYET YOK",
+      "emphasis": "30 € sınırı kaldırıldı",
+      "emphasisColor": "danger",
+      "label": "6 Şubat 2026'dan beri — düşük bedelli paketlerde",
+      "background": { "type": "video", "videoFile": "broll/vergi-hesap.mp4", "videoOpacity": 0.18 }
+    },
+    {
+      "type": "stat",
+      "afterWord": "Yani",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "1 € BİLE",
+      "emphasis": "Gümrük işlemi ve vergi gündeme gelir",
+      "emphasisColor": "danger",
+      "label": "En ucuz üründe bile"
+    },
+    {
+      "type": "list",
+      "afterWord": "Üstelik",
+      "occurrence": 1,
+      "position": "center",
+      "header": "Vergiye Ne Dahil?",
+      "headerStyle": "band",
+      "numbered": false,
+      "layout": "stack",
+      "items": ["Ürün bedeli", "Kargo bedeli", "Gümrükleme / hizmet bedeli"],
+      "revealMode": "cumulative",
+      "highlightColor": "accent",
+      "revealOn": [
+        { "afterWord": "sadece", "itemIndex": 0 },
+        { "afterWord": "kargo", "itemIndex": 1, "occurrence": 1 },
+        { "afterWord": "gümrükleme", "itemIndex": 2 }
+      ],
+      "background": { "type": "video", "videoFile": "broll/vergi-hesap.mp4", "videoOpacity": 0.18 }
+    },
+    {
+      "type": "stat",
+      "afterWord": "yüzden",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "250 TL",
+      "emphasis": "Masraflar eklenince fiyatını aşabilir",
+      "emphasisColor": "danger",
+      "label": "Küçük bir üründe bile"
+    },
+    {
+      "type": "list",
+      "afterWord": "ayda",
+      "occurrence": 1,
+      "position": "center",
+      "header": "Bireysel Değil, Ticari!",
+      "headerStyle": "band",
+      "numbered": false,
+      "layout": "stack",
+      "items": ["Ayda 5 paketi aşarsan", "30 kiloyu aşarsan"],
+      "revealMode": "cumulative",
+      "highlightColor": "danger",
+      "revealOn": [
+        { "afterWord": "paketi", "itemIndex": 0 },
+        { "afterWord": "kiloyu", "itemIndex": 1 }
+      ]
+    },
+    {
+      "type": "title",
+      "afterWord": "Detaylar",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Takip Et",
+      "subtitle": "Detaylar kanalda",
+      "background": { "type": "video", "videoFile": "broll/phone.mp4", "videoOpacity": 0.3 }
+    }
+  ],
+  "highlightedWords": []
+}

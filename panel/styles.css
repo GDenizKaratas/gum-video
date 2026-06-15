@@ -631,3 +631,123 @@ code {
   font-size: 12px;
   margin-top: 10px;
 }
+
+/* ============================================================
+   Sosyal / Foto studio (PhotoStudio.tsx)
+   ============================================================ */
+.root-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+.root-shell > .app {
+  height: auto;
+  flex: 1;
+  min-height: 0;
+}
+.mode-switch {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #0a1628;
+  border-bottom: 1px solid var(--border-strong);
+}
+.mode-switch button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.66);
+  border-radius: 9px;
+  padding: 7px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.mode-switch button:hover {
+  color: #fff;
+}
+.mode-switch button.active {
+  background: var(--gold-btn);
+  color: #0a1628;
+}
+
+/* Photo rail labels are wider (no icons) */
+.photo-app .rail {
+  padding: 14px 6px;
+}
+.photo-app .rail-btn {
+  font-size: 11.5px;
+  padding: 9px 6px;
+  text-align: center;
+}
+
+.fhint {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 11px;
+}
+button.link {
+  background: none;
+  border: none;
+  color: var(--accent-strong);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+button.ghost.xsmall {
+  padding: 2px 7px;
+  font-size: 12px;
+  border-radius: 7px;
+}
+
+/* Carousel slide cards */
+.slide-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: var(--panel);
+}
+.slide-card.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+.slide-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.slide-card-actions {
+  display: inline-flex;
+  gap: 4px;
+}
+
+/* Live preview box (iframe of the headless render page) */
+.photo-preview-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #0a1830;
+  box-shadow: var(--shadow);
+  margin: 0 auto;
+}
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.dots .dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 999px;
+  border: none;
+  background: var(--border-strong);
+  cursor: pointer;
+}
+.dots .dot.on {
+  background: var(--accent);
+  width: 22px;
+}

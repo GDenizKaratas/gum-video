@@ -8,6 +8,7 @@ import "dotenv/config";
 
 import { ScriptSchema, type Script } from "../schema";
 import { generateSpeechWithTimestamps } from "../tts/elevenlabs";
+import { toSpokenTr } from "../tts/spoken";
 import {
   alignmentToWordTimings,
   captionsToWordTimings,
@@ -17,6 +18,13 @@ import {
 import { buildTimeline, type BackgroundConfig } from "../tts/align";
 import { suggestScenes } from "../suggest/scenes";
 import { BROLL_PROXY_DIR, withBrollProxies } from "../media/brollProxy";
+import { registerPhotoRoutes } from "./photoRoutes";
+import {
+  getNumberedRenderOutputFileName,
+  getRenderOutputFile,
+  getRenderOutputRelativePath,
+  getRenderOutputUrl,
+} from "../outputPaths";
 
 const PORT = Number(process.env.PANEL_PORT ?? 4005);
 const ROOT = process.cwd();
@@ -194,6 +202,9 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
 });
 
+// Social-media (photo) pipeline — isolated routes + static, video untouched
+registerPhotoRoutes(app);
+
 const thumbsDir = path.join(publicDir, "_thumbs");
 fs.mkdirSync(thumbsDir, { recursive: true });
 
@@ -318,7 +329,7 @@ app.post("/api/tts", async (req, res) => {
     }
 
     const slug = slugify(title);
-    const alignment = await generateSpeechWithTimestamps(narration, voiceId, audioPath(slug));
+    const alignment = await generateSpeechWithTimestamps(toSpokenTr(narration), voiceId, audioPath(slug));
     const words = alignmentToWordTimings(alignment);
     const captions = wordTimingsToCaptions(words);
     fs.writeFileSync(captionsPath(slug), JSON.stringify(captions, null, 2));
@@ -423,8 +434,12 @@ app.post("/api/render", (req, res) => {
     const timeStr = `${String(now.getHours()).padStart(2, "0")}${String(
       now.getMinutes(),
     ).padStart(2, "0")}`;
-    const fileName = `${slug}-${dateStr}-${timeStr}.mp4`;
-    const outFile = path.join(outputDir, fileName);
+    const baseFileName = `${slug}-${dateStr}-${timeStr}.mp4`;
+    const fileName = getNumberedRenderOutputFileName(ROOT, orientation, baseFileName);
+    const outFile = getRenderOutputFile(ROOT, orientation, fileName);
+    const outputRelativePath = getRenderOutputRelativePath(orientation, fileName);
+    const outputUrl = getRenderOutputUrl(orientation, fileName);
+    fs.mkdirSync(path.dirname(outFile), { recursive: true });
 
     const inputProps = {
       audioPublicPath: `audio/${slug}.mp3`,
@@ -444,8 +459,8 @@ app.post("/api/render", (req, res) => {
       stage: "queued",
       progress: 0,
       message: "Render kuyruğa alındı.",
-      fileName,
-      url: `/output/${fileName}`,
+      fileName: outputRelativePath,
+      url: outputUrl,
       propsPath,
       listeners: new Set(),
       outputBuffer: "",
@@ -484,8 +499,8 @@ app.post("/api/render", (req, res) => {
           stage: "done",
           progress: 100,
           message: "Render tamamlandı.",
-          fileName,
-          url: `/output/${fileName}`,
+          fileName: outputRelativePath,
+          url: outputUrl,
         });
       } else {
         const error = `Render başarısız oldu (exit code ${code ?? "bilinmiyor"}).`;
@@ -503,8 +518,8 @@ app.post("/api/render", (req, res) => {
     res.json({
       ok: true,
       jobId,
-      fileName,
-      url: `/output/${fileName}`,
+      fileName: outputRelativePath,
+      url: outputUrl,
       warnings: timeline.warnings,
     });
   } catch (e) {

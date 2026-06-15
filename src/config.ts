@@ -10,6 +10,7 @@ export type Orientation = keyof typeof DIMENSIONS;
 export const DEFAULT_ORIENTATION: Orientation = "vertical";
 
 export const ELEVENLABS_MODEL = "eleven_multilingual_v2";
+export const ELEVENLABS_LANGUAGE_CODE = "tr";
 
 export const WHISPER_VERSION = "1.5.5";
 export const WHISPER_MODEL = "medium";

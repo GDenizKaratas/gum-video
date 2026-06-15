@@ -3,12 +3,17 @@ import fs from "fs";
 import { execFileSync } from "child_process";
 import { thumbnailDefaultProps } from "../remotion/Thumbnail";
 
-// Renders the Thumbnail composition (1280x720) to thumbnails/<name>-<date>.png
+// Renders a thumbnail to thumbnails/videos or thumbnails/shorts.
 // Usage:
 //   npm run thumbnail -- --title="..." --highlight="..." --warn="..." --tag="..." --bg="_thumbs/x.png" --name=konu
+//   npm run thumbnail -- --shorts --title="..." --highlight="..." --warn="..." --tag="..." --bg="_thumbs/x.png" --name=konu
 function flag(name: string): string | undefined {
   const a = process.argv.find((x) => x.startsWith(`--${name}=`));
   return a ? a.slice(name.length + 3) : undefined;
+}
+
+function hasFlag(name: string): boolean {
+  return process.argv.includes(`--${name}`);
 }
 
 function slugify(s: string): string {
@@ -30,7 +35,11 @@ const props = {
   ...(flag("theme") ? { themeId: flag("theme") } : {}),
 };
 
-const thumbsDir = path.join(process.cwd(), "thumbnails");
+const orientation = flag("orientation");
+const isShorts = hasFlag("shorts") || orientation === "vertical" || orientation === "shorts";
+const compositionId = isShorts ? "ShortsThumbnail" : "Thumbnail";
+const outputKind = isShorts ? "shorts" : "videos";
+const thumbsDir = path.join(process.cwd(), "thumbnails", outputKind);
 fs.mkdirSync(thumbsDir, { recursive: true });
 
 const now = new Date();
@@ -40,8 +49,8 @@ const stamp = `${now.toISOString().slice(0, 10)}-${String(now.getHours()).padSta
 const name = flag("name") ?? slugify(props.title);
 const outFile = path.join(thumbsDir, `${name}-${stamp}.png`);
 
-console.log(`🖼  Thumbnail üretiliyor → thumbnails/${path.basename(outFile)}`);
-execFileSync("npx", ["remotion", "still", "Thumbnail", outFile, `--props=${JSON.stringify(props)}`], {
+console.log(`🖼  Thumbnail üretiliyor → thumbnails/${outputKind}/${path.basename(outFile)}`);
+execFileSync("npx", ["remotion", "still", compositionId, outFile, `--props=${JSON.stringify(props)}`], {
   stdio: "inherit",
   cwd: process.cwd(),
 });

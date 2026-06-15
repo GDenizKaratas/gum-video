@@ -1,0 +1,42 @@
+/* ============================================================
+   TYPOGRAPHY — Gümrükte Güncel
+   One family (Archivo) doing all the work via weight + case.
+   Scale is tuned for 1080×1080 Instagram posters ("afiş" logic),
+   so values are large. Headlines: heavy weight, tight tracking.
+   Eyebrows & wordmark: uppercase, positive tracking.
+   ============================================================ */
+:root {
+  --font-display: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+
+  /* weights */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+  --fw-extrabold: 800; /* @kind font */
+  --fw-black: 900; /* @kind font */
+
+  /* poster type scale (px @ 1080 canvas) */
+  --fs-stat: 200px;     /* hero numbers: "730 GÜN" */
+  --fs-display: 108px;  /* biggest headline word */
+  --fs-h1: 84px;        /* main title */
+  --fs-h2: 64px;        /* secondary title */
+  --fs-lead: 46px;      /* lead paragraph */
+  --fs-body: 40px;      /* body copy */
+  --fs-chip: 30px;      /* topic chips */
+  --fs-label: 28px;     /* eyebrow / brand tag */
+  --fs-caption: 24px;   /* fine print */
+
+  /* line-heights */
+  --lh-tight: 0.96; /* @kind font */
+  --lh-snug: 1.06; /* @kind font */
+  --lh-head: 1.12; /* @kind font */
+  --lh-body: 1.42; /* @kind font */
+
+  /* tracking */
+  --tr-tight: -0.02em;
+  --tr-normal: 0em;
+  --tr-wide: 0.04em;
+  --tr-eyebrow: 0.22em;  /* uppercase labels */
+}

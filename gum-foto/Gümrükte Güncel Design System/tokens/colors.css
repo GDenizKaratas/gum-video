@@ -1,0 +1,51 @@
+/* ============================================================
+   COLORS — Gümrükte Güncel
+   Navy field, white type, yellow used like tweezers (numbers +
+   a single keyword). A muted brand-blue exists ONLY for faint
+   background motifs (map, routes), never for type or UI accents.
+   ============================================================ */
+:root {
+  /* --- Brand navy scale --- */
+  --navy-900: #0A1830;   /* deepest — vignette edges */
+  --navy-800: #0F2244;   /* PRIMARY brand background */
+  --navy-700: #15294F;   /* raised panels / subtle blocks */
+  --navy-600: #1B3463;   /* hairline blocks, motif fills */
+
+  /* --- Ink (text on navy) --- */
+  --white: #FFFFFF;
+  --ink-strong: #FFFFFF;            /* headlines, primary copy */
+  --ink-muted: rgba(255,255,255,0.74); /* secondary / body copy */
+  --ink-faint: rgba(255,255,255,0.46); /* labels, meta, captions */
+  --ink-ghost: rgba(255,255,255,0.16); /* hairlines, dividers */
+
+  /* --- Yellow accent (use sparingly) --- */
+  --accent: #F5C518;       /* THE highlight — numbers + 1 keyword */
+  --accent-deep: #D9AC0F;  /* pressed / borders on yellow */
+  --accent-ink: #0F2244;   /* text sitting ON a yellow fill */
+
+  /* --- Muted brand blue — background motifs ONLY --- */
+  --blue-motif: #2E5BB0;
+  --blue-motif-faint: rgba(96,140,220,0.14);
+
+  /* --- Thumbnail-only "hot" red (YouTube/Shorts punch) ---
+     NOT a feed/post color. Use only on video thumbnails, on the
+     single hardest word or a small callout, for click contrast. */
+  --yt-hot: #E63A3F;
+  --yt-hot-ink: #FFFFFF;
+
+  /* ===== Semantic aliases ===== */
+  --bg-base: var(--navy-800);
+  --bg-deep: var(--navy-900);
+  --surface-panel: var(--navy-700);
+
+  --text-display: var(--ink-strong);
+  --text-body: var(--ink-muted);
+  --text-label: var(--ink-faint);
+  --divider: var(--ink-ghost);
+
+  --highlight: var(--accent);
+  --highlight-ink: var(--accent-ink);
+
+  --warn-fill: var(--accent);
+  --warn-ink: var(--accent-ink);
+}

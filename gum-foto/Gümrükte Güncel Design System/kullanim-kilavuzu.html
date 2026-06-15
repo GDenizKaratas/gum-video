@@ -1,0 +1,349 @@
+<!-- @dsCard group="Brand" name="Kullanım Kılavuzu" subtitle="Haberden gönderiye — sistemi nasıl kullanırsın" viewport="1100x1500" -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gümrükte Güncel — Kullanım Kılavuzu</title>
+<link rel="stylesheet" href="tokens/fonts.css" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(125% 80% at 50% -8%, var(--navy-700) 0%, var(--navy-800) 44%, var(--navy-900) 100%);
+    background-attachment: fixed;
+    color: var(--ink-strong);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    padding: 0 28px 140px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+
+  /* ---------- masthead ---------- */
+  header.masthead {
+    padding: 92px 0 48px;
+    border-bottom: 2px solid var(--ink-ghost);
+    margin-bottom: 72px;
+  }
+  .wordmark {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    text-transform: uppercase;
+    letter-spacing: var(--tr-eyebrow);
+    font-size: 21px;
+    color: var(--ink-faint);
+  }
+  .wordmark .dot { width: 13px; height: 13px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  h1.title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    letter-spacing: var(--tr-tight);
+    line-height: 0.98;
+    font-size: clamp(46px, 8vw, 78px);
+    margin: 30px 0 0;
+    text-wrap: balance;
+  }
+  h1.title em { font-style: normal; color: var(--accent); }
+  .lede {
+    font-size: 21px;
+    color: var(--ink-muted);
+    max-width: 60ch;
+    margin: 26px 0 0;
+    text-wrap: pretty;
+  }
+
+  /* ---------- section ---------- */
+  section { margin-bottom: 84px; }
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--tr-eyebrow);
+    font-size: 14px;
+    color: var(--accent);
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before {
+    content: ""; width: 30px; height: 3px; background: var(--accent); display: inline-block;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    letter-spacing: var(--tr-tight);
+    line-height: 1.04;
+    font-size: clamp(30px, 5vw, 42px);
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 16px; color: var(--ink-muted); font-size: 18px; }
+  p strong { color: var(--ink-strong); font-weight: var(--fw-semibold); }
+  .hl { color: var(--accent); font-weight: var(--fw-semibold); }
+
+  /* ---------- step flow ---------- */
+  .steps { display: flex; flex-direction: column; gap: 18px; counter-reset: step; }
+  .step {
+    display: grid; grid-template-columns: 56px 1fr; gap: 22px;
+    align-items: start;
+    background: var(--navy-700);
+    border: 1px solid var(--ink-ghost);
+    border-radius: 18px;
+    padding: 26px 28px;
+  }
+  .step::before {
+    counter-increment: step;
+    content: counter(step);
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: 30px;
+    color: var(--accent-ink);
+    background: var(--accent);
+    width: 56px; height: 56px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step h3 { font-family: var(--font-display); font-weight: var(--fw-bold); font-size: 21px; margin: 4px 0 8px; letter-spacing: -0.01em; }
+  .step p { font-size: 17px; margin: 0; }
+  .step p + p { margin-top: 8px; }
+
+  /* ---------- template cards ---------- */
+  .tpl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .tpl {
+    background: var(--navy-700);
+    border: 1px solid var(--ink-ghost);
+    border-radius: 16px;
+    padding: 22px 24px;
+  }
+  .tpl .tag {
+    font-family: var(--font-display); font-weight: var(--fw-bold);
+    text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px;
+    color: var(--ink-faint);
+  }
+  .tpl h3 { font-family: var(--font-display); font-weight: var(--fw-bold); font-size: 20px; margin: 6px 0 8px; letter-spacing: -0.01em; }
+  .tpl p { font-size: 15.5px; margin: 0; color: var(--ink-muted); }
+  .tpl .use { display: block; margin-top: 12px; font-size: 14.5px; color: var(--ink-faint); }
+  .tpl .use b { color: var(--accent); font-weight: var(--fw-semibold); }
+
+  /* ---------- channel split ---------- */
+  .channels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .ch { background: var(--navy-700); border: 1px solid var(--ink-ghost); border-radius: 16px; padding: 22px 22px 24px; }
+  .ch .ratio { font-family: var(--font-display); font-weight: var(--fw-black); font-size: 26px; color: var(--accent); letter-spacing: -0.01em; }
+  .ch h3 { font-family: var(--font-display); font-weight: var(--fw-bold); font-size: 18px; margin: 6px 0 10px; }
+  .ch ul { margin: 0; padding-left: 18px; }
+  .ch li { font-size: 15px; color: var(--ink-muted); margin-bottom: 6px; }
+
+  /* ---------- rules ---------- */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .rule { display: flex; gap: 14px; align-items: flex-start; background: var(--navy-700); border: 1px solid var(--ink-ghost); border-radius: 14px; padding: 18px 20px; }
+  .rule .mk { font-family: var(--font-display); font-weight: var(--fw-black); font-size: 20px; line-height: 1; flex: 0 0 auto; width: 26px; }
+  .rule.do .mk { color: var(--accent); }
+  .rule.dont .mk { color: var(--yt-hot); }
+  .rule p { font-size: 15.5px; margin: 0; }
+  .rule b { color: var(--ink-strong); font-weight: var(--fw-semibold); }
+
+  /* ---------- yellow callout ---------- */
+  .callout {
+    background: var(--accent); color: var(--accent-ink);
+    border-radius: 18px; padding: 30px 34px;
+  }
+  .callout .eyebrow { color: var(--accent-ink); }
+  .callout .eyebrow::before { background: var(--accent-ink); }
+  .callout h2 { color: var(--accent-ink); margin-bottom: 12px; }
+  .callout p { color: rgba(15,34,68,0.82); font-size: 18px; }
+  .callout strong { color: var(--accent-ink); }
+
+  a.link { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-deep); font-weight: var(--fw-semibold); }
+
+  @media (max-width: 720px) {
+    .tpl-grid, .channels, .rules { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 44px 1fr; gap: 16px; padding: 20px; }
+    .step::before { width: 44px; height: 44px; font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="wordmark"><span class="dot"></span>Gümrükte Güncel</span>
+    <h1 class="title">Bu sistemi <em>nasıl kullanacaksın?</em></h1>
+    <p class="lede">Aklında bir haber var — mevzuat değişti, yeni bir genelge çıktı, bir vergi oranı güncellendi. Bu kılavuz o haberi <strong>dakikalar içinde</strong> markaya uygun bir Instagram gönderisine veya YouTube kapağına nasıl çevireceğini anlatır. Tasarım bilgisi gerekmez; doğru şablonu seçip metni değiştirmen yeterli.</p>
+  </header>
+
+  <!-- 1. CORE IDEA -->
+  <section>
+    <div class="eyebrow">Önce mantık</div>
+    <h2>Sistem nedir, neyi çözer?</h2>
+    <p>Gümrükte Güncel görsel sistemi tek bir görünüm üretir: <strong>lacivert zemin, beyaz başlık, cımbız gibi kullanılan sarı vurgu.</strong> Her gönderin aynı aileden görünür, takipçi akışta seni bir bakışta tanır. Sen her seferinde sıfırdan tasarım yapmazsın — <span class="hl">hazır şablonu açar, metni değiştirir, dışa aktarırsın.</span></p>
+    <p>İki tür çıktı var: <strong>kare gönderiler (1080×1080)</strong> Instagram feed ve carousel için; <strong>video kapakları</strong> YouTube (16:9) ve Shorts/Reels (9:16) için.</p>
+  </section>
+
+  <!-- 2. WORKFLOW -->
+  <section>
+    <div class="eyebrow">Akış</div>
+    <h2>Haberden gönderiye — 5 adım</h2>
+    <div class="steps">
+      <div class="step">
+        <div>
+          <h3>Haberi bir cümleye indir</h3>
+          <p>"Ne oldu ve takipçiyi nasıl ilgilendiriyor?" Örn: <em>"AB menşeli araçlarda ÖTV matrahı değişti."</em> Başlık bu cümleden çıkacak — kısa, net, abartısız.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Doğru şablonu seç</h3>
+          <p>Haberin türüne göre aşağıdaki <a class="link" href="#templates">şablon listesinden</a> birini aç. Mevzuat takibi mi? <span class="hl">Güncel Gönderisi.</span> Bir sayı/oran mı öne çıkıyor? <span class="hl">Değer Gönderisi.</span> Dikkat çekmek mi istiyorsun? <span class="hl">Uyarı Gönderisi.</span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Metni değiştir</h3>
+          <p>Şablonda başlık, alt metin, tarih ve konu etiketleri hazır durur. Üzerine tıklayıp kendi metnini yaz. <strong>Sadece tek bir kelimeyi veya sayıyı sarı yap</strong> — en kritik olanı.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Fotoğraf gerekiyorsa ekle</h3>
+          <p>Fotoğraflı gönderi veya video kapağı kullanıyorsan, fotoğraf alanına kendi görselini (gümrük, liman, araç, evrak) bırak. Lacivert örtü ve okunabilirlik otomatik gelir.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Dışa aktar &amp; paylaş</h3>
+          <p>Sayfayı görüntüle, görsel olarak kaydet (PNG) ve Instagram'da/YouTube'da paylaş. Carousel için her kareyi ayrı ayrı dışa aktar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. TEMPLATES -->
+  <section id="templates">
+    <div class="eyebrow">Şablonlar</div>
+    <h2>Hangi haber → hangi şablon?</h2>
+    <div class="tpl-grid">
+      <div class="tpl">
+        <span class="tag">1080×1080</span>
+        <h3>Güncel Gönderisi</h3>
+        <p>Mevzuat takibi: "2026 GÜNCEL" etiketi, başlık, tarih vurgusu.</p>
+        <span class="use"><b>Kullan:</b> Yeni genelge, değişen oran, yürürlük tarihi.</span>
+      </div>
+      <div class="tpl">
+        <span class="tag">1080×1080</span>
+        <h3>Değer Gönderisi</h3>
+        <p>Büyük sarı sayı (stat) + soru başlık + kısa cevap.</p>
+        <span class="use"><b>Kullan:</b> "730 gün", "%18", bir rakamın öne çıktığı bilgi.</span>
+      </div>
+      <div class="tpl">
+        <span class="tag">1080×1080</span>
+        <h3>Uyarı Gönderisi</h3>
+        <p>Kanca + gerçek bilgi, sarı uyarı şeridi ile dikkat.</p>
+        <span class="use"><b>Kullan:</b> Yaygın hata, ceza riski, "dikkat" mesajı.</span>
+      </div>
+      <div class="tpl">
+        <span class="tag">1080×1080</span>
+        <h3>Fotoğraflı Gönderi</h3>
+        <p>Fotoğraf zemin + lacivert örtü + okunur büyük başlık.</p>
+        <span class="use"><b>Kullan:</b> Liman, araç, evrak fotoğrafı olan haberler.</span>
+      </div>
+      <div class="tpl">
+        <span class="tag">1080×1080</span>
+        <h3>Karşılama Gönderisi</h3>
+        <p>Açılış / kimlik postu: büyük wordmark, kısa vaat, konu etiketleri.</p>
+        <span class="use"><b>Kullan:</b> Sayfayı tanıtma, "ne paylaşıyoruz" postu.</span>
+      </div>
+      <div class="tpl">
+        <span class="tag">Çok kare</span>
+        <h3>Carousel (Kaydırmalı)</h3>
+        <p>Kapak → stat → uyarı → CTA. Eğitici, adım adım anlatım.</p>
+        <span class="use"><b>Kullan:</b> Bir konuyu detaylı anlatmak (ithalat süreci vb.).</span>
+      </div>
+      <div class="tpl">
+        <span class="tag">1280×720</span>
+        <h3>YouTube Thumbnail</h3>
+        <p>Foto zemin + lacivert scrim + ağır başlık + kırmızı callout.</p>
+        <span class="use"><b>Kullan:</b> Yatay video kapağı.</span>
+      </div>
+      <div class="tpl">
+        <span class="tag">1080×1920</span>
+        <h3>Shorts Thumbnail</h3>
+        <p>Dikey kapak; başlık UI güvenli alanların dışında durur.</p>
+        <span class="use"><b>Kullan:</b> Shorts / Reels / TikTok dikey kapağı.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CHANNELS -->
+  <section>
+    <div class="eyebrow">Kanallar</div>
+    <h2>Nereye, hangi boyut?</h2>
+    <div class="channels">
+      <div class="ch">
+        <div class="ratio">1:1</div>
+        <h3>Instagram Feed</h3>
+        <ul>
+          <li>Güncel / Değer / Uyarı / Fotoğraflı gönderi</li>
+          <li>Tek kare = tek mesaj</li>
+          <li>Carousel ile detaylı anlat</li>
+        </ul>
+      </div>
+      <div class="ch">
+        <div class="ratio">16:9</div>
+        <h3>YouTube</h3>
+        <ul>
+          <li>YouTube Thumbnail şablonu</li>
+          <li>Başlık 2–4 kelime, çok büyük</li>
+          <li>Kırmızı callout sadece tıklatma için</li>
+        </ul>
+      </div>
+      <div class="ch">
+        <div class="ratio">9:16</div>
+        <h3>Shorts / Reels</h3>
+        <ul>
+          <li>Shorts Thumbnail şablonu</li>
+          <li>Metni ortada tut (UI alanları)</li>
+          <li>Aynı haberi feed'den türet</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. DO / DONT -->
+  <section>
+    <div class="eyebrow">Altın kurallar</div>
+    <h2>Markayı bozmamak için</h2>
+    <div class="rules">
+      <div class="rule do"><span class="mk">✓</span><p><b>Tek sarı vurgu.</b> Bir gönderide en fazla bir kelime + sayılar sarı. Cımbız gibi kullan.</p></div>
+      <div class="rule dont"><span class="mk">✕</span><p>Başlığın yarısını sarıya boyamak. Vurgu anlamını kaybeder.</p></div>
+      <div class="rule do"><span class="mk">✓</span><p><b>Başlık kısa.</b> 4–8 kelime. Haberi tek nefeste oku.</p></div>
+      <div class="rule dont"><span class="mk">✕</span><p>Paragraf uzunluğunda başlık. Akışta kimse okumaz.</p></div>
+      <div class="rule do"><span class="mk">✓</span><p><b>Lacivert zemin sabit.</b> Renkleri tokenlardan al, kendin renk uydurma.</p></div>
+      <div class="rule dont"><span class="mk">✕</span><p>Kırmızıyı feed gönderisinde kullanmak. Kırmızı sadece video kapağında.</p></div>
+      <div class="rule do"><span class="mk">✓</span><p><b>Fotoğraf okunur kalsın.</b> Başlık net görünmüyorsa lacivert örtüyü artır.</p></div>
+      <div class="rule dont"><span class="mk">✕</span><p>Fontu değiştirmek. Her şey Archivo; ağırlık + büyük/küçük harf ile çeşitlilik yarat.</p></div>
+    </div>
+  </section>
+
+  <!-- 6. EXAMPLE -->
+  <section>
+    <div class="callout">
+      <div class="eyebrow">Somut örnek</div>
+      <h2>"Yeni haber girecek olsam?"</h2>
+      <p style="margin-bottom:14px"><strong>Haber:</strong> "1 Temmuz'dan itibaren ikinci el ithal araçlarda ÖTV matrahı %25 arttı."</p>
+      <p style="margin-bottom:14px"><strong>Karar:</strong> Bir oran (%25) öne çıkıyor → <strong>Değer Gönderisi</strong> aç. Stat alanına <strong>%25</strong>, başlığa <strong>"İthal araçta ÖTV matrahı arttı"</strong>, tarihe <strong>1 Temmuz 2026</strong> yaz.</p>
+      <p style="margin-bottom:0"><strong>Instagram için:</strong> bu kareyi PNG kaydet, feed'e at. <strong>Aynı haberi videoya çevireceksen:</strong> YouTube Thumbnail aç, aynı başlığı yaz, "%25" kelimesini kırmızı callout yap. Tek haber → iki kanal, aynı görünüm.</p>
+    </div>
+  </section>
+
+  <!-- 7. WHERE -->
+  <section style="margin-bottom:0">
+    <div class="eyebrow">Nereden başlarım</div>
+    <h2>Şablonlara erişim</h2>
+    <p>Tüm şablonlar <strong>templates/</strong> klasöründe. Bir gönderi yapmak için ilgili klasördeki <strong>index.html</strong> dosyasını aç, metni düzenle, görseli kaydet. Bileşenleri (Eyebrow, Highlight, StatNumber, WarningStrip, VideoThumb vb.) ve renk/font kurallarını <strong>Design System</strong> sekmesindeki kartlarda görebilirsin.</p>
+  </section>
+
+</div>
+</body>
+</html>

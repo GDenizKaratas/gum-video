@@ -80,6 +80,8 @@ export const SceneSchema = z.discriminatedUnion("type", [
     type: z.literal("stat"),
     value: z.string(),
     label: z.string(),
+    emphasis: z.string().optional(),
+    emphasisColor: z.enum(["accent", "danger", "plain"]).default("accent"),
   }),
   WordTrigger.extend({
     type: z.literal("image"),

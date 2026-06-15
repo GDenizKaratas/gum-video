@@ -1,0 +1,23 @@
+<!-- @dsCard group="Spacing" viewport="700x190" name="Radii & rules" subtitle="Restrained corners, hairline dividers" -->
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--navy-800); font-family: var(--font-body); padding: 28px 32px; display: flex; gap: 30px; align-items: flex-start; }
+  .col { display: flex; flex-direction: column; gap: 14px; }
+  .box { width: 96px; height: 60px; background: var(--navy-700); border: 1px solid var(--ink-ghost); }
+  .lab { color: #fff; font-size: 12px; font-weight: 700; }
+  .sub { color: rgba(255,255,255,0.45); font-size: 11px; }
+  .rules { display: flex; flex-direction: column; gap: 16px; flex: 1; }
+  .r2 { height: 2px; background: var(--ink-ghost); }
+  .r4 { height: 4px; background: var(--accent); width: 60%; border-radius: 2px; }
+  .r6 { height: 6px; background: var(--accent); width: 30%; border-radius: 3px; }
+</style></head>
+<body>
+<div class="col"><div class="box" style="border-radius:var(--radius-sm)"></div><div class="lab">radius-sm</div><div class="sub">6px · strips, blocks</div></div>
+<div class="col"><div class="box" style="border-radius:var(--radius-md)"></div><div class="lab">radius-md</div><div class="sub">10px · max</div></div>
+<div class="rules">
+  <div><div class="r2"></div><div class="sub" style="margin-top:6px">rule-thin 2px · ink-ghost divider</div></div>
+  <div><div class="r4"></div><div class="sub" style="margin-top:6px">rule-med 4px · accent bar</div></div>
+  <div><div class="r6"></div><div class="sub" style="margin-top:6px">rule-accent 6px · eyebrow tick</div></div>
+</div>
+</body></html>

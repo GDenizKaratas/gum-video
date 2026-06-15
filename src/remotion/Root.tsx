@@ -3,7 +3,7 @@ import { Composition, CalculateMetadataFunction, Folder } from "remotion";
 // Side-effect: starts loading Inter font
 import "./fonts";
 import { VideoComposition, type VideoProps } from "./Video";
-import { Thumbnail, thumbnailDefaultProps } from "./Thumbnail";
+import { ShortsThumbnail, Thumbnail, thumbnailDefaultProps } from "./Thumbnail";
 import { DIMENSIONS, FPS, DEFAULT_ORIENTATION } from "../config";
 
 const defaultProps: VideoProps = {
@@ -53,6 +53,15 @@ export const RemotionRoot: React.FC = () => {
         fps={FPS}
         width={1280}
         height={720}
+        defaultProps={thumbnailDefaultProps}
+      />
+      <Composition
+        id="ShortsThumbnail"
+        component={ShortsThumbnail}
+        durationInFrames={1}
+        fps={FPS}
+        width={1080}
+        height={1920}
         defaultProps={thumbnailDefaultProps}
       />
     </Folder>

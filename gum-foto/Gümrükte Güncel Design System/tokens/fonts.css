@@ -1,0 +1,8 @@
+/* ============================================================
+   FONTS — Gümrükte Güncel
+   Display & body: Archivo (bold neo-grotesque, full Turkish glyph
+   support: Ü Ğ İ Ş Ç Ö). Loaded from Google Fonts.
+   NOTE: This is a close substitute for the original wordmark face.
+   See README "Typography" — flagged for the user to confirm/replace.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');

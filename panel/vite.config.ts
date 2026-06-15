@@ -16,6 +16,9 @@ export default defineConfig({
     proxy: {
       "/api": "http://localhost:4005",
       "/output": "http://localhost:4005",
+      // Photo render page + design-system assets (iframe preview)
+      "/photo-render": "http://localhost:4005",
+      "/ds": "http://localhost:4005",
     },
   },
 });

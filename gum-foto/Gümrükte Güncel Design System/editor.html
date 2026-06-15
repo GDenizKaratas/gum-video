@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gümrükte Güncel Post Editor</title>
+    <link rel="stylesheet" href="tokens/fonts.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #07101f;
+        font-family: var(--font-body, system-ui, sans-serif);
+        color: white;
+      }
+      .editor-shell {
+        display: grid;
+        grid-template-columns: minmax(320px, 420px) 1fr;
+        min-height: 100vh;
+      }
+      .panel {
+        padding: 28px;
+        background: #091522;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .panel header {
+        margin-bottom: 24px;
+      }
+      .panel h1 {
+        margin: 0 0 12px;
+        font-family: var(--font-display, system-ui, sans-serif);
+        font-size: 28px;
+        letter-spacing: 0.02em;
+        line-height: 1.1;
+      }
+      .panel p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+      .field {
+        margin-bottom: 18px;
+      }
+      .field label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #94b3ff;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        min-height: 42px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        color: white;
+        font-size: 15px;
+        line-height: 1.4;
+        font-family: inherit;
+      }
+      .field textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .field small {
+        display: block;
+        margin-top: 8px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.4;
+      }
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .button-row button,
+      .button-row a {
+        cursor: pointer;
+        border: none;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-weight: 700;
+        color: #07101f;
+        background: #f5c518;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition:
+          transform 0.16s ease,
+          box-shadow 0.16s ease;
+      }
+      .button-row button:hover,
+      .button-row a:hover {
+        transform: translateY(-1px);
+      }
+      .button-row button.secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        box-shadow: none;
+      }
+      .preview-shell {
+        padding: 28px;
+        position: relative;
+        overflow: auto;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(15, 34, 68, 0.22),
+            transparent 24%
+          ),
+          radial-gradient(
+            circle at right,
+            rgba(245, 197, 24, 0.08),
+            transparent 18%
+          ),
+          #03111f;
+      }
+      .preview-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .preview-toolbar .status {
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .preview-frame {
+        width: 100%;
+        min-height: calc(100vh - 160px);
+        display: grid;
+        place-items: center;
+      }
+      .preview-box {
+        position: relative;
+        width: 1080px;
+        height: 1080px;
+        max-width: calc(100vw - 500px);
+        max-height: calc(100vh - 180px);
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
+        border-radius: 24px;
+        overflow: hidden;
+        transform: scale(0.35);
+        transform-origin: top left;
+        background: #04101e;
+      }
+      .preview-scale {
+        width: 1080px;
+        height: 1080px;
+        transform-origin: top left;
+      }
+      .status.error {
+        color: #ff8a8a;
+      }
+      .hint {
+        margin-top: 10px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 13px;
+      }
+      @media (max-width: 960px) {
+        .editor-shell {
+          grid-template-columns: 1fr;
+        }
+        .preview-shell {
+          min-height: 60vh;
+        }
+        .preview-box {
+          max-width: 100%;
+          max-height: none;
+          transform: scale(0.28);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="editor-shell">
+      <section class="panel">
+        <header>
+          <h1>Gümrükte Güncel Editor</h1>
+          <p>
+            Tek sayfada şablon seç, metni düzenle, önizle ve PNG olarak indir.
+            JSON ile paylaşabilir veya saklayabilirsiniz.
+          </p>
+        </header>
+
+        <div class="field">
+          <label for="template">Şablon</label>
+          <select id="template" name="template"></select>
+        </div>
+
+        <div id="fields"></div>
+
+        <div class="field">
+          <label for="jsonInput">JSON İçeriği</label>
+          <textarea id="jsonInput" spellcheck="false"></textarea>
+          <small
+            >Metni JSON halinde düzenleyebilirsin. Değişiklikler için
+            <strong>Uygula</strong> düğmesine bas.</small
+          >
+        </div>
+
+        <div class="button-row">
+          <button id="applyJson">Uygula</button>
+          <button id="resetSample" class="secondary">Örnek Yükle</button>
+          <button id="saveOutput">output/ Klasörüne Kaydet</button>
+          <button id="downloadPng" class="secondary">PNG İndir</button>
+        </div>
+        <div class="hint">
+          <strong>output/ Klasörüne Kaydet</strong> için editörü
+          <code>python3 server.py</code> ile aç. Görüntü doğrudan proje içindeki
+          <code>output/</code> klasörüne düşer.
+        </div>
+      </section>
+
+      <section class="preview-shell">
+        <div class="preview-toolbar">
+          <div class="status" id="statusText">Hazır.</div>
+          <div class="button-row">
+            <button id="copyJson" class="secondary">JSON Kopyala</button>
+          </div>
+        </div>
+        <div class="preview-frame">
+          <div class="preview-box">
+            <div class="preview-scale" id="exportRoot"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script
+      src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.9.0/dist/dom-to-image-more.min.js"
+      crossorigin
+    ></script>
+    <script>
+      window.GG_ASSET_BASE = "assets";
+    </script>
+    <script src="_ds_bundle.js"></script>
+
+    <script type="text/babel" data-presets="env,react">
+      const ROOT = document.getElementById("root");
+      const templateSelect = document.getElementById("template");
+      const fieldsContainer = document.getElementById("fields");
+      const jsonInput = document.getElementById("jsonInput");
+      const applyJsonBtn = document.getElementById("applyJson");
+      const resetSampleBtn = document.getElementById("resetSample");
+      const downloadPngBtn = document.getElementById("downloadPng");
+      const saveOutputBtn = document.getElementById("saveOutput");
+      const copyJsonBtn = document.getElementById("copyJson");
+      const statusText = document.getElementById("statusText");
+      const exportRoot = document.getElementById("exportRoot");
+
+      const PHOTO_OPTIONS = [
+        { value: "liman-gemi.png", label: "Liman / Gemi" },
+        { value: "konteyner-vinc.png", label: "Konteyner / Vinç" },
+        { value: "arac-arazi.png", label: "Araç / Arazi" },
+        { value: "arac-yol.png", label: "Yabancı Plaka Yol" },
+        { value: "yabanci-plaka.png", label: "Yabancı Plaka" },
+      ];
+
+      const TEMPLATES = {
+        welcome: {
+          key: "welcome",
+          name: "Karşılama",
+          description: "Marka kimliği ve tanıtım için sade açılış gönderisi.",
+          defaults: {
+            title: "GÜMRÜKTE\nGÜNCEL",
+            body: "Gümrük ve dış ticaret mevzuatını sade, doğru ve **güncel** anlatıyoruz.",
+            topics: "İthalat, İhracat, Vergi, Lojistik, Mevzuat",
+            handle: "@gumrukteguncel",
+            brand: false,
+          },
+          fields: [
+            { name: "title", label: "Başlık", type: "textarea", rows: 3 },
+            { name: "body", label: "Paragraf", type: "textarea", rows: 4 },
+            {
+              name: "topics",
+              label: "Konu etiketi (virgülle ayır)",
+              type: "text",
+            },
+            { name: "handle", label: "Alt etiket", type: "text" },
+          ],
+        },
+        value: {
+          key: "value",
+          name: "Değer",
+          description: "Anahtar sayı + soru + destek metni.",
+          defaults: {
+            eyebrow: "YABANCI PLAKALI ARAÇ",
+            statValue: "730",
+            statUnit: "GÜN",
+            headline: "Yabancı plakalı araç Türkiye’de ne kadar kalır?",
+            body: "Cevap kim olduğuna göre değişiyor. Detaylar YouTube kanalımızda.",
+            handle: "@gumrukteguncel",
+          },
+          fields: [
+            { name: "eyebrow", label: "Eyebrow", type: "text" },
+            { name: "statValue", label: "Stat değeri", type: "text" },
+            { name: "statUnit", label: "Stat birimi", type: "text" },
+            { name: "headline", label: "Manşet", type: "textarea", rows: 3 },
+            { name: "body", label: "Paragraf", type: "textarea", rows: 4 },
+            { name: "handle", label: "Alt etiket", type: "text" },
+          ],
+        },
+        warning: {
+          key: "warning",
+          name: "Uyarı",
+          description: "Kanca başlık + uyarı şeridi.",
+          defaults: {
+            eyebrow: "UYARI",
+            hook: "En **pahalı** hata",
+            body: "Yabancı plakalı arabanı Türkiye’de ailene bırakıp çıkarsan ne olur? Çoğu kişi bunu **masum** sanıyor.",
+            stripText: "Gümrük vergisinin ¼’ü ceza + araç men",
+            handle: "@gumrukteguncel",
+          },
+          fields: [
+            { name: "eyebrow", label: "Eyebrow", type: "text" },
+            { name: "hook", label: "Kanca başlık", type: "textarea", rows: 3 },
+            { name: "body", label: "Paragraf", type: "textarea", rows: 4 },
+            { name: "stripText", label: "Uyarı şeridi", type: "text" },
+            { name: "handle", label: "Alt etiket", type: "text" },
+          ],
+        },
+        update: {
+          key: "update",
+          name: "Güncel",
+          description: "Haber seti / güncel mevzuat duyurusu.",
+          defaults: {
+            eyebrow: "2026 GÜNCEL",
+            headline: "Kurallar sürekli **değişiyor**",
+            body: "27 Şubat 2026’da yürürlüğe giren yeni düzenlemeler dış ticareti doğrudan etkiliyor. Takipte kalın.",
+            handle: "@gumrukteguncel",
+          },
+          fields: [
+            { name: "eyebrow", label: "Eyebrow", type: "text" },
+            { name: "headline", label: "Manşet", type: "textarea", rows: 3 },
+            { name: "body", label: "Paragraf", type: "textarea", rows: 4 },
+            { name: "handle", label: "Alt etiket", type: "text" },
+          ],
+        },
+        photo: {
+          key: "photo",
+          name: "Fotoğraf",
+          description: "Fotoğraf arka planlı post.",
+          defaults: {
+            eyebrow: "İHRACAT",
+            headline: "İhracatta gümrük süreçleri nasıl işliyor?",
+            body: "Beyannameden konşimentoya, adım adım anlattık. Detaylar YouTube kanalımızda.",
+            photo: "liman-gemi.png",
+            handle: "@gumrukteguncel",
+          },
+          fields: [
+            { name: "eyebrow", label: "Eyebrow", type: "text" },
+            { name: "headline", label: "Manşet", type: "textarea", rows: 3 },
+            { name: "body", label: "Paragraf", type: "textarea", rows: 4 },
+            {
+              name: "photo",
+              label: "Fotoğraf",
+              type: "select",
+              options: PHOTO_OPTIONS,
+            },
+            { name: "handle", label: "Alt etiket", type: "text" },
+          ],
+        },
+      };
+
+      function getTemplateKeys() {
+        return Object.keys(TEMPLATES);
+      }
+
+      function getDefaultData(templateKey) {
+        return { ...TEMPLATES[templateKey].defaults };
+      }
+
+      function highlightMarkup(value) {
+        if (typeof value !== "string") return value;
+        const parts = value.split(/(\*\*[^*]+\*\*)/g);
+        return parts.map((part, idx) => {
+          if (part.startsWith("**") && part.endsWith("**")) {
+            return React.createElement(
+              window.GMrKteGNcelDesignSystem_500523.Highlight,
+              { key: idx },
+              part.slice(2, -2),
+            );
+          }
+          return part;
+        });
+      }
+
+      function renderText(value, style) {
+        return React.createElement(
+          "p",
+          { style },
+          value
+            .split(/\n+/g)
+            .flatMap((line, index) => [
+              React.createElement(
+                "span",
+                { key: index, style: { display: "block" } },
+                highlightMarkup(line),
+              ),
+              index < value.split(/\n+/g).length - 1
+                ? React.createElement("br", { key: `br-${index}` })
+                : null,
+            ]),
+        );
+      }
+
+      function PreviewPost({ template, data }) {
+        const ns = window.GMrKteGNcelDesignSystem_500523;
+        if (!ns) return null;
+        const {
+          PostFrame,
+          Eyebrow,
+          Highlight,
+          TopicChips,
+          StatNumber,
+          WarningStrip,
+          LineIcon,
+        } = ns;
+
+        switch (template) {
+          case "welcome":
+            return (
+              <PostFrame
+                motif="combo"
+                brand={data.brand !== false}
+                handle={data.handle}
+              >
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    gap: 40,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      flexDirection: "column",
+                      alignItems: "stretch",
+                      gap: 20,
+                    }}
+                  >
+                    {data.title.split("\n").map((line, index) => (
+                      <span
+                        key={index}
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontWeight: "var(--fw-black)",
+                          fontSize: 150,
+                          lineHeight: 0.9,
+                          letterSpacing: index === 0 ? "0.005em" : "0.135em",
+                          color: "var(--white)",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {highlightMarkup(line)}
+                      </span>
+                    ))}
+                  </div>
+                  <p
+                    style={{
+                      margin: 0,
+                      maxWidth: 760,
+                      fontSize: "var(--fs-lead)",
+                      fontWeight: "var(--fw-medium)",
+                      lineHeight: "var(--lh-body)",
+                      color: "var(--ink-muted)",
+                      letterSpacing: "-0.005em",
+                    }}
+                  >
+                    {highlightMarkup(data.body)}
+                  </p>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    paddingTop: 10,
+                  }}
+                >
+                  <TopicChips
+                    items={data.topics
+                      .split(",")
+                      .map((item) => item.trim())
+                      .filter(Boolean)}
+                  />
+                </div>
+              </PostFrame>
+            );
+
+          case "value":
+            return (
+              <PostFrame motif="routes" handle={data.handle}>
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    gap: 40,
+                  }}
+                >
+                  <Eyebrow tone="faint">
+                    <LineIcon
+                      name="car"
+                      size={32}
+                      color="var(--ink-faint)"
+                      strokeWidth={2}
+                    />
+                    {data.eyebrow}
+                  </Eyebrow>
+                  <StatNumber value={data.statValue} unit={data.statUnit} />
+                  <h1
+                    style={{
+                      margin: 0,
+                      maxWidth: 880,
+                      fontFamily: "var(--font-display)",
+                      fontSize: "var(--fs-h1)",
+                      fontWeight: "var(--fw-black)",
+                      lineHeight: "var(--lh-head)",
+                      letterSpacing: "var(--tr-tight)",
+                      color: "var(--ink-strong)",
+                      textWrap: "balance",
+                    }}
+                  >
+                    {highlightMarkup(data.headline)}
+                  </h1>
+                  <p
+                    style={{
+                      margin: 0,
+                      maxWidth: 760,
+                      fontSize: "var(--fs-body)",
+                      fontWeight: "var(--fw-regular)",
+                      lineHeight: "var(--lh-body)",
+                      color: "var(--ink-muted)",
+                    }}
+                  >
+                    {highlightMarkup(data.body)}
+                  </p>
+                </div>
+              </PostFrame>
+            );
+
+          case "warning":
+            return (
+              <PostFrame motif="routes" handle={data.handle}>
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    gap: 40,
+                  }}
+                >
+                  <Eyebrow tone="accent">
+                    <LineIcon
+                      name="alert"
+                      size={32}
+                      color="var(--accent)"
+                      strokeWidth={2.2}
+                    />
+                    {data.eyebrow}
+                  </Eyebrow>
+                  <h1
+                    style={{
+                      margin: 0,
+                      fontFamily: "var(--font-display)",
+                      fontSize: "var(--fs-display)",
+                      fontWeight: "var(--fw-black)",
+                      lineHeight: "var(--lh-tight)",
+                      letterSpacing: "var(--tr-tight)",
+                      color: "var(--ink-strong)",
+                    }}
+                  >
+                    {highlightMarkup(data.hook)}
+                  </h1>
+                  <p
+                    style={{
+                      margin: 0,
+                      maxWidth: 820,
+                      fontSize: "var(--fs-body)",
+                      fontWeight: "var(--fw-regular)",
+                      lineHeight: "var(--lh-body)",
+                      color: "var(--ink-muted)",
+                    }}
+                  >
+                    {highlightMarkup(data.body)}
+                  </p>
+                </div>
+                <WarningStrip icon="alert">{data.stripText}</WarningStrip>
+              </PostFrame>
+            );
+
+          case "update":
+            return (
+              <PostFrame motif="combo" handle={data.handle}>
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    gap: 40,
+                  }}
+                >
+                  <Eyebrow tone="accent" rule>
+                    {data.eyebrow}
+                  </Eyebrow>
+                  <h1
+                    style={{
+                      margin: 0,
+                      maxWidth: 900,
+                      fontFamily: "var(--font-display)",
+                      fontSize: "var(--fs-display)",
+                      fontWeight: "var(--fw-black)",
+                      lineHeight: "var(--lh-tight)",
+                      letterSpacing: "var(--tr-tight)",
+                      color: "var(--ink-strong)",
+                    }}
+                  >
+                    {highlightMarkup(data.headline)}
+                  </h1>
+                  <p
+                    style={{
+                      margin: 0,
+                      maxWidth: 800,
+                      fontSize: "var(--fs-body)",
+                      fontWeight: "var(--fw-regular)",
+                      lineHeight: "var(--lh-body)",
+                      color: "var(--ink-muted)",
+                    }}
+                  >
+                    {highlightMarkup(data.body)}
+                  </p>
+                </div>
+              </PostFrame>
+            );
+
+          case "photo":
+            return (
+              <PostFrame
+                photo={`${window.GG_ASSET_BASE}/photos/${data.photo}`}
+                photoPos="center"
+                scrim="bottom"
+                handle={data.handle}
+              >
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    gap: 32,
+                  }}
+                >
+                  <Eyebrow tone="accent" rule>
+                    {data.eyebrow}
+                  </Eyebrow>
+                  <h1
+                    style={{
+                      margin: 0,
+                      maxWidth: 880,
+                      fontFamily: "var(--font-display)",
+                      fontSize: "var(--fs-h1)",
+                      fontWeight: "var(--fw-black)",
+                      lineHeight: "var(--lh-head)",
+                      letterSpacing: "var(--tr-tight)",
+                      color: "var(--ink-strong)",
+                      textWrap: "balance",
+                      textShadow: "0 2px 24px rgba(7,16,31,0.55)",
+                    }}
+                  >
+                    {highlightMarkup(data.headline)}
+                  </h1>
+                  <p
+                    style={{
+                      margin: 0,
+                      maxWidth: 760,
+                      fontSize: "var(--fs-body)",
+                      fontWeight: "var(--fw-regular)",
+                      lineHeight: "var(--lh-body)",
+                      color: "var(--ink-muted)",
+                    }}
+                  >
+                    {highlightMarkup(data.body)}
+                  </p>
+                </div>
+              </PostFrame>
+            );
+
+          default:
+            return null;
+        }
+      }
+
+      function renderField(field, value, onChange) {
+        if (field.type === "textarea") {
+          return (
+            <div className="field" key={field.name}>
+              <label htmlFor={field.name}>{field.label}</label>
+              <textarea
+                id={field.name}
+                rows={field.rows || 3}
+                value={value || ""}
+                onChange={(e) => onChange(field.name, e.target.value)}
+              />
+            </div>
+          );
+        }
+        if (field.type === "select") {
+          return (
+            <div className="field" key={field.name}>
+              <label htmlFor={field.name}>{field.label}</label>
+              <select
+                id={field.name}
+                value={value || ""}
+                onChange={(e) => onChange(field.name, e.target.value)}
+              >
+                {field.options.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          );
+        }
+        return (
+          <div className="field" key={field.name}>
+            <label htmlFor={field.name}>{field.label}</label>
+            <input
+              id={field.name}
+              type="text"
+              value={value || ""}
+              onChange={(e) => onChange(field.name, e.target.value)}
+            />
+          </div>
+        );
+      }
+
+      function createFieldEditor(data, onChange, templateKey) {
+        const template = TEMPLATES[templateKey];
+        return template.fields.map((field) =>
+          renderField(field, data[field.name], onChange),
+        );
+      }
+
+      function setStatus(message, isError) {
+        statusText.textContent = message;
+        statusText.className = isError ? "status error" : "status";
+      }
+
+      function initEditor() {
+        const templateKeys = getTemplateKeys();
+        for (const key of templateKeys) {
+          const option = document.createElement("option");
+          option.value = key;
+          option.textContent = TEMPLATES[key].name;
+          templateSelect.appendChild(option);
+        }
+
+        let currentTemplate = templateKeys[0];
+        let currentData = getDefaultData(currentTemplate);
+
+        // Kökleri (root) BİR KEZ oluştur, sonra yalnızca .render() ile güncelle.
+        // Aynı kapsayıcıda createRoot'u tekrar çağırmak React'te hata verir.
+        const previewRoot = ReactDOM.createRoot(exportRoot);
+        const fieldsRoot = ReactDOM.createRoot(fieldsContainer);
+
+        function paintPreview() {
+          previewRoot.render(
+            <PreviewPost template={currentTemplate} data={currentData} />,
+          );
+        }
+
+        function syncJson() {
+          jsonInput.value = JSON.stringify(currentData, null, 2);
+        }
+
+        function onFieldChange(name, value) {
+          currentData = { ...currentData, [name]: value };
+          syncJson();
+          renderFields();
+          paintPreview();
+        }
+
+        function renderFields() {
+          // createFieldEditor React elemanları döndürür; DOM'a appendChild ile
+          // değil, ReactDOM kökü üzerinden render edilmeli.
+          fieldsRoot.render(
+            createFieldEditor(currentData, onFieldChange, currentTemplate),
+          );
+        }
+
+        function setTemplate(key) {
+          currentTemplate = key;
+          currentData = getDefaultData(key);
+          templateSelect.value = key;
+          renderFields();
+          syncJson();
+          paintPreview();
+          setStatus(`Şablon: ${TEMPLATES[key].name}`, false);
+        }
+
+        templateSelect.addEventListener("change", (e) =>
+          setTemplate(e.target.value),
+        );
+
+        applyJsonBtn.addEventListener("click", () => {
+          try {
+            const parsed = JSON.parse(jsonInput.value);
+            if (!parsed || typeof parsed !== "object")
+              throw new Error("Geçerli bir JSON nesnesi girin.");
+            currentData = parsed;
+            renderFields();
+            paintPreview();
+            setStatus("JSON uygulandı.", false);
+          } catch (error) {
+            setStatus("JSON hatası: " + error.message, true);
+          }
+        });
+
+        resetSampleBtn.addEventListener("click", () => {
+          setTemplate(currentTemplate);
+        });
+
+        async function renderPng() {
+          return domtoimage.toPng(exportRoot, {
+            width: 1080,
+            height: 1080,
+            style: {
+              transform: "scale(1)",
+              transformOrigin: "top left",
+            },
+            filter: (node) => {
+              const tagName = node.tagName ? node.tagName.toLowerCase() : "";
+              return (
+                tagName !== "button" &&
+                tagName !== "textarea" &&
+                tagName !== "input" &&
+                tagName !== "select"
+              );
+            },
+          });
+        }
+
+        downloadPngBtn.addEventListener("click", async () => {
+          try {
+            setStatus("PNG hazırlanıyor…", false);
+            const dataUrl = await renderPng();
+            const link = document.createElement("a");
+            const fileName = `${currentTemplate}-post.png`;
+            link.download = fileName;
+            link.href = dataUrl;
+            link.click();
+            setStatus(`${fileName} indirildi.`, false);
+          } catch (error) {
+            setStatus("PNG oluşturulamadı: " + error.message, true);
+          }
+        });
+
+        saveOutputBtn.addEventListener("click", async () => {
+          try {
+            setStatus("output/ klasörüne kaydediliyor…", false);
+            const dataUrl = await renderPng();
+            const response = await fetch("/save", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name: currentTemplate, dataUrl }),
+            });
+            const result = await response.json();
+            if (!result.ok) throw new Error(result.error || "Bilinmeyen hata");
+            setStatus(`Kaydedildi → ${result.file}`, false);
+          } catch (error) {
+            setStatus(
+              "Kaydedilemedi (sunucu çalışıyor mu? python3 server.py): " +
+                error.message,
+              true,
+            );
+          }
+        });
+
+        copyJsonBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(jsonInput.value);
+            setStatus("JSON kopyalandı.", false);
+          } catch (error) {
+            setStatus("Kopyalama başarısız: " + error.message, true);
+          }
+        });
+
+        setTemplate(currentTemplate);
+      }
+
+      // Babel Standalone, type="text/babel" betiklerini sayfanın
+      // DOMContentLoaded olayından SONRA derleyip çalıştırır; bu yüzden
+      // burada DOMContentLoaded'i beklemek işe yaramaz (olay çoktan geçmiştir).
+      // DOM zaten hazırsa doğrudan başlat.
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initEditor);
+      } else {
+        initEditor();
+      }
+    </script>
+  </body>
+</html>

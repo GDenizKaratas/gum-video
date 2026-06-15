@@ -152,3 +152,147 @@ export const Thumbnail: React.FC<ThumbnailProps> = ({
     </AbsoluteFill>
   );
 };
+
+export const ShortsThumbnail: React.FC<ThumbnailProps> = ({
+  bgImage,
+  tag,
+  title,
+  highlight,
+  warn,
+  themeId,
+}) => {
+  const theme = getTheme(themeId);
+
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0A1628" }}>
+      {bgImage && (
+        <Img
+          src={staticFile(bgImage)}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+      )}
+
+      <AbsoluteFill
+        style={{
+          background: `linear-gradient(180deg, ${withAlpha(theme.gradient[0], 0.76)} 0%, ${withAlpha(
+            theme.gradient[0],
+            0.58,
+          )} 34%, ${withAlpha(theme.gradient[0], 0.9)} 100%)`,
+        }}
+      />
+      <AbsoluteFill
+        style={{
+          background: `linear-gradient(90deg, ${withAlpha(theme.gradient[0], 0.88)} 0%, ${withAlpha(
+            theme.gradient[0],
+            0.28,
+          )} 100%)`,
+        }}
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          right: 0,
+          height: 18,
+          backgroundColor: theme.primary,
+        }}
+      />
+
+      <Img
+        src={staticFile("logo/gumrukte-guncel.png")}
+        style={{
+          position: "absolute",
+          top: 58,
+          right: 58,
+          width: 136,
+          height: 136,
+          objectFit: "contain",
+          borderRadius: 22,
+        }}
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          left: 68,
+          right: 68,
+          top: 300,
+          bottom: 250,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          gap: 34,
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: theme.primary,
+            color: theme.primaryText,
+            fontFamily: FONTS.heading,
+            fontWeight: 800,
+            fontSize: 42,
+            letterSpacing: 0.5,
+            padding: "12px 24px",
+            borderRadius: 12,
+          }}
+        >
+          {tag}
+        </div>
+
+        <div
+          style={{
+            fontFamily: FONTS.heading,
+            fontWeight: 800,
+            fontSize: title.length > 22 ? 82 : 92,
+            lineHeight: 1.02,
+            color: "#FFFFFF",
+            textShadow: "0 6px 24px rgba(0,0,0,0.75)",
+            maxWidth: 940,
+          }}
+        >
+          {title}
+        </div>
+
+        <div
+          style={{
+            fontFamily: FONTS.heading,
+            fontWeight: 800,
+            fontSize: highlight.length > 10 ? 150 : 190,
+            lineHeight: 0.9,
+            color: theme.primary,
+            textShadow: "0 6px 28px rgba(0,0,0,0.8)",
+            maxWidth: 940,
+          }}
+        >
+          {highlight}
+        </div>
+
+        <div
+          style={{
+            backgroundColor: theme.danger,
+            color: "#FFFFFF",
+            fontFamily: FONTS.heading,
+            fontWeight: 800,
+            fontSize: warn.length > 14 ? 62 : 74,
+            lineHeight: 1,
+            letterSpacing: 0.5,
+            padding: "18px 30px",
+            borderRadius: 16,
+            boxShadow: "0 16px 42px rgba(0,0,0,0.48)",
+            maxWidth: 900,
+          }}
+        >
+          {warn}
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};

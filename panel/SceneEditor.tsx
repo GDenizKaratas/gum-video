@@ -188,16 +188,36 @@ export const SceneEditor: React.FC<Props> = ({
       )}
 
       {scene.type === "stat" && (
-        <div className="row">
-          <div>
-            <label>Değer</label>
-            <input value={scene.value ?? ""} onChange={(e) => set({ value: e.target.value })} placeholder="%45" />
+        <>
+          <div className="row">
+            <div>
+              <label>Değer</label>
+              <input value={scene.value ?? ""} onChange={(e) => set({ value: e.target.value })} placeholder="CEZA" />
+            </div>
+            <div>
+              <label>Etiket</label>
+              <input value={scene.label ?? ""} onChange={(e) => set({ label: e.target.value })} placeholder="kısa açıklama" />
+            </div>
           </div>
-          <div>
-            <label>Etiket</label>
-            <input value={scene.label ?? ""} onChange={(e) => set({ label: e.target.value })} placeholder="daha hızlı" />
+          <label>Vurgulu alt satır (opsiyonel)</label>
+          <input
+            value={scene.emphasis ?? ""}
+            onChange={(e) => set({ emphasis: e.target.value || undefined })}
+            placeholder="Gümrük vergisinin 1/4'ü"
+          />
+          <label style={{ marginTop: 10 }}>Vurgu rengi</label>
+          <div className="toggle">
+            {(["accent", "danger", "plain"] as const).map((c) => (
+              <button
+                key={c}
+                className={(scene.emphasisColor ?? "accent") === c ? "active" : ""}
+                onClick={() => set({ emphasisColor: c })}
+              >
+                {c === "accent" ? "Sarı" : c === "danger" ? "Kırmızı" : "Beyaz"}
+              </button>
+            ))}
           </div>
-        </div>
+        </>
       )}
 
       {scene.type === "image" && (

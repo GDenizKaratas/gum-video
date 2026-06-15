@@ -1,0 +1,10 @@
+{
+  "type": "carousel",
+  "handle": "@gumrukteguncel",
+  "slides": [
+    { "kind": "cover", "eyebrow": "BİLGİ NOTU · ARAÇ", "headline": "Yabancı plakalı araç **rehberi**", "body": "Süre, kurallar ve en sık yapılan hata — kaydırın." },
+    { "kind": "stat", "eyebrow": "NE KADAR KALIR?", "icon": "car", "statValue": "730", "statUnit": "GÜN", "body": "Yabancı plakalı bir araç Türkiye'de azami **730 gün** kalabilir." },
+    { "kind": "warning", "eyebrow": "EN PAHALI HATA", "headline": "Aracı ailene bırakıp **çıkarsan** ne olur?", "stripText": "Gümrük vergisinin ¼'ü ceza + araç men" },
+    { "kind": "cta", "icon": "document", "headline": "Detaylar **YouTube** kanalımızda", "body": "Takipte kalın · @gumrukteguncel" }
+  ]
+}

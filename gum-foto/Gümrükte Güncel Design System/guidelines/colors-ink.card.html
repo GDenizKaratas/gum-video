@@ -1,0 +1,21 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Ink on navy" subtitle="White text hierarchy" -->
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--navy-800); font-family: var(--font-body); padding: 28px 30px; }
+  .row { display: flex; gap: 18px; }
+  .cell { flex: 1; }
+  .chip { height: 56px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+  .name { color: #fff; font-size: 13px; font-weight: 700; margin-top: 12px; }
+  .role { color: rgba(255,255,255,0.42); font-size: 11px; margin-top: 3px; }
+  .sample { font-size: 26px; font-weight: 800; margin-bottom: 22px; letter-spacing: -0.01em; }
+</style></head>
+<body>
+<div class="sample"><span style="color:var(--ink-strong)">Mevzuat</span> <span style="color:var(--ink-muted)">sade, doğru</span> <span style="color:var(--ink-faint)">ve güncel</span></div>
+<div class="row">
+  <div class="cell"><div class="chip" style="background:var(--ink-strong)"></div><div class="name">ink-strong</div><div class="role">headlines · 100%</div></div>
+  <div class="cell"><div class="chip" style="background:var(--ink-muted)"></div><div class="name">ink-muted</div><div class="role">body · 74%</div></div>
+  <div class="cell"><div class="chip" style="background:var(--ink-faint)"></div><div class="name">ink-faint</div><div class="role">labels · 46%</div></div>
+  <div class="cell"><div class="chip" style="background:var(--ink-ghost)"></div><div class="name">ink-ghost</div><div class="role">hairlines · 16%</div></div>
+</div>
+</body></html>

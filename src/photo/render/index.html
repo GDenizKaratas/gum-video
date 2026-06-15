@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gümrükte Güncel — Foto Render</title>
+
+    <!-- Local Archivo (vendored) — deterministic/offline, no Google Fonts -->
+    <link rel="stylesheet" href="./fonts/fonts.local.css" />
+    <!-- Design-system tokens (CSS variables only; fonts come from above) -->
+    <link rel="stylesheet" href="/ds/tokens/colors.css" />
+    <link rel="stylesheet" href="/ds/tokens/typography.css" />
+    <link rel="stylesheet" href="/ds/tokens/spacing.css" />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--navy-900, #0a1830);
+      }
+      /* The mounted component sizes itself (1080², 1280×720 or 1080×1920).
+         #stage simply hosts it at the top-left for an exact screenshot. */
+      #stage {
+        display: inline-block;
+        vertical-align: top;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stage"></div>
+
+    <!-- Vendored React 18 UMD (sets global React/ReactDOM) -->
+    <script src="./vendor/react.production.min.js"></script>
+    <script src="./vendor/react-dom.production.min.js"></script>
+    <!-- Where PostFrame/VideoThumb resolve photo URLs from -->
+    <script>
+      window.GG_ASSET_BASE = "/ds/assets";
+    </script>
+    <!-- Design-system component bundle (uses global React.createElement) -->
+    <script src="/ds/_ds_bundle.js"></script>
+    <!-- Shared render mapping (doc → DS React elements) -->
+    <script src="./templates.js"></script>
+
+    <script>
+      (function () {
+        var stage = document.getElementById("stage");
+        var root = ReactDOM.createRoot(stage);
+        var WEIGHTS = [400, 500, 600, 700, 800, 900];
+
+        function ensureFonts() {
+          if (!document.fonts || !document.fonts.load) return Promise.resolve();
+          var loads = WEIGHTS.map(function (w) {
+            return document.fonts.load(w + " 100px Archivo").catch(function () {});
+          });
+          return Promise.all(loads).then(function () {
+            return document.fonts.ready;
+          });
+        }
+
+        function raf2() {
+          return new Promise(function (res) {
+            requestAnimationFrame(function () {
+              requestAnimationFrame(res);
+            });
+          });
+        }
+
+        // Render a document (optionally a specific carousel slide) and resolve
+        // only once fonts are loaded and two frames have painted — so a
+        // Puppeteer screenshot taken right after is pixel-accurate.
+        window.__renderDoc = function (doc, slide) {
+          window.__READY__ = false;
+          stage.removeAttribute("data-ready");
+          return ensureFonts().then(function () {
+            root.render(window.PhotoRender.renderDocument(doc, undefined, { slide: slide || 0 }));
+            return raf2();
+          }).then(ensureFonts).then(raf2).then(function () {
+            window.__READY__ = true;
+            stage.setAttribute("data-ready", "1");
+            return window.PhotoRender.slideCount(doc);
+          });
+        };
+
+        // Panel iframe preview talks via postMessage.
+        window.addEventListener("message", function (ev) {
+          var data = ev.data || {};
+          if (data.type !== "render") return;
+          window.__renderDoc(data.doc, data.slide).then(function (count) {
+            try {
+              ev.source &&
+                ev.source.postMessage({ type: "rendered", slideCount: count }, "*");
+            } catch (e) {}
+          }).catch(function (err) {
+            try {
+              ev.source &&
+                ev.source.postMessage({ type: "render-error", error: String(err) }, "*");
+            } catch (e) {}
+          });
+        });
+
+        // Signal the page shell is ready to receive render calls.
+        window.__PHOTO_RENDER_READY__ = true;
+        try {
+          window.parent && window.parent.postMessage({ type: "render-page-ready" }, "*");
+        } catch (e) {}
+      })();
+    </script>
+  </body>
+</html>

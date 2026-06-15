@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "title": "Short Bavul Vergisiz Limit 2026",
+    "orientation": "vertical",
+    "voiceId": "o9DOmAyPjfFu8AfoFAnM",
+    "theme": "default"
+  },
+  "narration": "Yurt dışından dönerken bavulundaki her şey vergisiz sanıyorsan dikkat. 2026'da yolcu beraberinde ticari olmayan hediyelik eşya limiti 430 avro. 15 yaşından küçüklerde bu limit 150 avro. Peki limiti aşarsan ne olur? Eşyan 1500 avroyu geçmiyorsa, aşan kısım için tek ve maktu vergi çıkabilir. Bir de eşya ticari miktar gibi görünürse konu artık basit bavul muafiyeti olmaktan çıkar. Güncel gümrük limitleri için takip etmeyi unutma.",
+  "background": { "type": "video", "videoFile": "broll/istanbul-kiyi.mp4", "videoOpacity": 0.18 },
+  "captions": { "enabled": true, "karaoke": true },
+  "scenes": [
+    {
+      "type": "title",
+      "afterWord": "Yurt",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Bavulda Her Şey Vergisiz Değil!",
+      "subtitle": "2026 muafiyet limitleri",
+      "background": { "type": "video", "videoFile": "broll/istanbul-kiyi.mp4", "videoOpacity": 0.3 }
+    },
+    {
+      "type": "stat",
+      "afterWord": "yolcu",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "430 €",
+      "emphasis": "Ticari olmayan hediyelik eşya limiti",
+      "emphasisColor": "accent",
+      "label": "Yolcu beraberinde getirilebilir"
+    },
+    {
+      "type": "stat",
+      "afterWord": "yaşından",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "150 €",
+      "emphasis": "15 yaşından küçükler için",
+      "emphasisColor": "accent",
+      "label": "Daha düşük limit"
+    },
+    {
+      "type": "stat",
+      "afterWord": "aşarsan",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "value": "1500 €",
+      "emphasis": "Aşan kısma tek ve maktu vergi",
+      "emphasisColor": "danger",
+      "label": "Eşya bu sınırı geçmiyorsa",
+      "background": { "type": "video", "videoFile": "broll/vergi-hesap.mp4", "videoOpacity": 0.18 }
+    },
+    {
+      "type": "title",
+      "afterWord": "miktar",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Ticari Miktar = Ayrı Konu",
+      "subtitle": "Basit bavul muafiyeti devre dışı kalır"
+    },
+    {
+      "type": "title",
+      "afterWord": "Güncel",
+      "occurrence": 1,
+      "position": "center",
+      "textBackdrop": "plate",
+      "titleStyle": "band",
+      "title": "Takip Et",
+      "subtitle": "Güncel gümrük limitleri",
+      "background": { "type": "video", "videoFile": "broll/istanbul-kiyi.mp4", "videoOpacity": 0.3 }
+    }
+  ],
+  "highlightedWords": []
+}

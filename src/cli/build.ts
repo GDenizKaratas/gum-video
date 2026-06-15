@@ -5,6 +5,11 @@ import { prepare } from "./prepare";
 import { ScriptSchema } from "../schema";
 import { DIMENSIONS } from "../config";
 import { withBrollProxies } from "../media/brollProxy";
+import {
+  getNumberedRenderOutputFileName,
+  getRenderOutputFile,
+  getRenderOutputRelativePath,
+} from "../outputPaths";
 import "dotenv/config";
 
 async function main() {
@@ -69,12 +74,15 @@ async function main() {
   const now = new Date();
   const dateStr = now.toISOString().slice(0, 10);
   const timeStr = `${String(now.getHours()).padStart(2, "0")}${String(now.getMinutes()).padStart(2, "0")}`;
-  const outFile = path.join(process.cwd(), "output", `${slug}-${dateStr}-${timeStr}.mp4`);
+  const baseFileName = `${slug}-${dateStr}-${timeStr}.mp4`;
+  const fileName = getNumberedRenderOutputFileName(process.cwd(), orientation, baseFileName);
+  const outFile = getRenderOutputFile(process.cwd(), orientation, fileName);
+  const outputRelativePath = getRenderOutputRelativePath(orientation, fileName);
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
 
   console.log("🎬 Render başlıyor...");
   console.log(`   Format: ${width}x${height} (${orientation})`);
-  console.log(`   Çıktı: ${path.basename(outFile)}`);
+  console.log(`   Çıktı: output/${outputRelativePath}`);
 
   execFileSync(
     "npx",

@@ -55,7 +55,15 @@ function renderScene(ts: TimedScene) {
         />
       );
     case "stat":
-      return <StatScene value={scene.value} label={scene.label} position={position} />;
+      return (
+        <StatScene
+          value={scene.value}
+          label={scene.label}
+          emphasis={scene.emphasis}
+          emphasisColor={scene.emphasisColor}
+          position={position}
+        />
+      );
     case "image":
       return <ImageScene file={scene.file} caption={scene.caption} position={position} full={scene.full} />;
     case "video":
